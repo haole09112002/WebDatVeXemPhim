@@ -52,7 +52,7 @@ public class RapDAO implements INewDAO<Rap> {
 	}
 
 	@Override
-	public void add(Rap t) {
+	public int add(Rap t) {
 		String sql = "insert into Rap(tenRap, diaChi, soPhong) values (?, ? ?)";
 		PreparedStatement statement = null;
 			try {
@@ -60,14 +60,15 @@ public class RapDAO implements INewDAO<Rap> {
 				statement.setString(1, t.getTenRap());
 				statement.setString(2, t.getDiaChi());
 				statement.setInt(3, t.getSoPhong());
-				statement.executeUpdate();
+				return statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+			return 0;
 	}
 
 	@Override
-	public void update(Rap t) {
+	public int update(Rap t) {
 		String sql = "update  Rap set  tenRap = ?, diaChi = ?, soPhong = ? where idRap = ?)";
 		PreparedStatement statement = null;
 			try {
@@ -76,16 +77,17 @@ public class RapDAO implements INewDAO<Rap> {
 				statement.setString(2, t.getDiaChi());
 				statement.setInt(3, t.getSoPhong());
 				statement.setInt(4, t.getIdRap());
-				statement.executeUpdate();
+				return statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+			return 0;
 		
 	}
 
 	@Override
-	public void delete(Rap t) {
-		
+	public int delete(Rap t) {
+		return 0;
 		
 	}
 
