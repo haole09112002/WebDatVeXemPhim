@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,29 +56,56 @@ public class GioChieuDAO implements INewDAO<GioChieu> {
 	}
 
 	@Override
-	public void add(GioChieu t) {
+	public int add(GioChieu t) {
 		String sql = "insert into GioChieu(gioChieu, idRap) values(?,?)";
 		PreparedStatement statement = null;
 		try {
 			statement = DBHelper.getConnection().prepareStatement(sql);
 			statement.setTime(1, t.getGioChieu());
 			statement.setInt(2, t.getIdRap());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+			return 0;
 		}
 		
 	}
 
 	@Override
-	public void update(GioChieu t) {
+	public int update(GioChieu t) {
 		// TODO Auto-generated method stub
+		return 0;
 		
 	}
 
 	@Override
-	public void delete(GioChieu t) {
+	public int delete(GioChieu t) {
 		// TODO Auto-generated method stub
+		return 0;
+		
+	}
+	
+	public List<GioChieu> getByIdRapNgayIdPhim(int idRap, Date date, int idPhim) {
+		List<GioChieu> result = new ArrayList<>();
+		String sql = "SELECT giochieu.idGioChieu , giochieu.giochieu, giochieu.idRap"
+				+ "FROM giochieu"
+				+ "INNER JOIN lichchieu ON giochieu.idGioChieu = lichchieu.idGioChieu"
+				+ "WHERE idPhim = ? && ngaychieu = ?&& idRap = ?";
+		PreparedStatement statement = null;
+			try {
+				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement.setInt(1, idPhim);
+				statement.setDate(2, date);
+				statement.setInt(3, idRap);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+				 GioChieu gioChieu = new  GioChieu(rs.getInt(0), rs.getTime(1), rs.getInt(2));
+				 result.add(gioChieu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 		
 	}
 	

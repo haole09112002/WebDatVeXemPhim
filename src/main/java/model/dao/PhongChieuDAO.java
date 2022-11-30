@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +53,7 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 	}
 
 	@Override
-	public void add(PhongChieu t) {
+	public int add(PhongChieu t) {
 		String sql = "insert into PhongChieu(idRap, tenPhong, soGhe) values(?,?,?)";
 		PreparedStatement statement = null;
 		try {
@@ -60,15 +61,16 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 			statement.setInt(1, t.getIdRap());
 			statement.setString(2, t.getTenPhong());
 			statement.setInt(3, t.getSoGhe());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		return 0;
 		
 	}
 
 	@Override
-	public void update(PhongChieu t) {
+	public int update(PhongChieu t) {
 		String sql = "update  PhongChieu set idRap = ?, tenPhong = ?, soGhe = ? where idPhong = ?";
 		PreparedStatement statement = null;
 		try {
@@ -77,25 +79,50 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 			statement.setString(2, t.getTenPhong());
 			statement.setInt(3, t.getSoGhe());
 			statement.setInt(4, t.getIdPhong());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		return 0;
 		
 	}
 
 	@Override
-	public void delete(PhongChieu t) {
+	public int delete(PhongChieu t) {
 		String sql = "delete from   PhongChieu  where idPhong = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = DBHelper.getConnection().prepareStatement(sql);
 			statement.setInt(1, t.getIdPhong());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		return 0;
 		
+	}
+	public PhongChieu getPhongChieuByPhimNgayGio(int idPhim, Date ngay, int idGio)
+	{
+		String sql = "SELECT phongchieu.* FROM phongchieu INNER JOIN lichchieu ON lichchieu.idPhong = phongchieu.idPhong "
+				+ "WHERE lichchieu.ngaychieu = ? && lichchieu.idPhim = ? && lichchieu.idGioChieu = ?";
+		PreparedStatement statement = null;
+			try {
+				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement.setDate(1, ngay);
+				statement.setInt(2, idPhim);
+				statement.setInt(3, idGio);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					int idPhong = rs.getInt(0);
+					int idRap = rs.getInt(1);
+					String tenPhong = rs.getString(2);
+					int soGhe = rs.getInt(3);
+				 return new PhongChieu(idPhong, idRap, tenPhong, soGhe);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
