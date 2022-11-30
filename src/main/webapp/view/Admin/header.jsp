@@ -11,6 +11,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .header-container{
 	position: fixed;
@@ -33,11 +35,11 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">Movie<span
+				<li class="nav-item active"><a class="nav-link" href="./ListPhim.jsp">Movie<span
 						class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Showtimes</a>
+				<li class="nav-item"><a class="nav-link" href="./ScheduleMovie.jsp">Showtimes</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Statistical</a>
+				<li class="nav-item"><a class="nav-link" href="./CreateScheduleMovie.jsp">Create Showtimes</a>
 				</li>
 			</ul>
 		</div>
