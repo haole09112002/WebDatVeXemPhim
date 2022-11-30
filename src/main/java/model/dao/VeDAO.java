@@ -54,7 +54,7 @@ public class VeDAO implements INewDAO<Ve> {
 	}
 
 	@Override
-	public void add(Ve t) {
+	public int add(Ve t) {
 		String sql = "insert into Ve(idLichChieu, tenKhach, soDienThoai, tongTien) values (?,?,?,?)";
 		PreparedStatement statement = null;
 		try {
@@ -63,21 +63,44 @@ public class VeDAO implements INewDAO<Ve> {
 				statement.setString(2, t.getTenKhach());
 				statement.setString(3, t.getSoDienThoai());
 				statement.setDouble(4, t.getTongTien());
-				statement.executeUpdate();
+				return statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 
 	@Override
-	public void update(Ve t) {
-		
+	public int update(Ve t) {
+		return 0;
 		
 	}
 
 	@Override
-	public void delete(Ve t) {
-		
+	public int delete(Ve t) {
+		return 0;
+	}
+	public List<Ve> getVeByLichChieu(int id)
+	{
+		List<Ve> results = new ArrayList<>();
+		String sql = "Select * from Ve where idLichChieu = ?";
+		PreparedStatement statement = null;
+		try {
+				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement.setInt(1, id);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					int idVe = rs.getInt(0);
+					int idLichChieu = rs.getInt(1);	
+					String tenKhach = rs.getString(2);
+					String soDienThoai = rs.getString(3);
+					Double tongTien = rs.getDouble(4);
+					results.add(new Ve( idVe, idLichChieu, tenKhach, soDienThoai, tongTien));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return results;
 	}
 
 }

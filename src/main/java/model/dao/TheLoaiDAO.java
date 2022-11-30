@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.bean.TheLoai;
 
-public class TheLoaiDAO implements INewDAO<TheLoai>{
+public class TheLoaiDAO implements INewDAO<TheLoai> {
 
 	@Override
 	public List<TheLoai> getAll() {
@@ -15,12 +15,12 @@ public class TheLoaiDAO implements INewDAO<TheLoai>{
 		String sql = "Select * from TheLoai";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
-				ResultSet rs = statement.executeQuery();
-				while (rs.next()) {
-					int idTheLoai = rs.getInt(0);
-					String tenTheLoai = rs.getString(1);	
-					results.add(new TheLoai( idTheLoai, tenTheLoai));
+			statement = DBHelper.getConnection().prepareStatement(sql);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				int idTheLoai = rs.getInt(0);
+				String tenTheLoai = rs.getString(1);
+				results.add(new TheLoai(idTheLoai, tenTheLoai));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -33,13 +33,13 @@ public class TheLoaiDAO implements INewDAO<TheLoai>{
 		String sql = "Select * from TheLoai where idTheLoai = ?";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
-				statement.setInt(1, id);
-				ResultSet rs = statement.executeQuery();
-				while (rs.next()) {
-					int idTheLoai = rs.getInt(0);
-					String tenTheLoai = rs.getString(1);	
-					return new TheLoai( idTheLoai, tenTheLoai);
+			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement.setInt(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				int idTheLoai = rs.getInt(0);
+				String tenTheLoai = rs.getString(1);
+				return new TheLoai(idTheLoai, tenTheLoai);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,38 +48,40 @@ public class TheLoaiDAO implements INewDAO<TheLoai>{
 	}
 
 	@Override
-	public void add(TheLoai t) {
+	public int add(TheLoai t) {
 		String sql = "insert into TheLoai(tenTheLoai) values (?)";
 		PreparedStatement statement = null;
-			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
-				statement.setString(1, t.getTenTheLoai());
-				statement.executeUpdate();
+		try {
+			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement.setString(1, t.getTenTheLoai());
+			return statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return 0;
+
 	}
 
 	@Override
-	public void update(TheLoai t) {
+	public int update(TheLoai t) {
 		String sql = "update TheLoai set tenTheLoai = ? where idTheLoai = ?";
 		PreparedStatement statement = null;
-			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
-				statement.setString(1, t.getTenTheLoai());
-				statement.setInt(2, t.getIdTheLoai());
-				statement.executeUpdate();
+		try {
+			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement.setString(1, t.getTenTheLoai());
+			statement.setInt(2, t.getIdTheLoai());
+			return statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return 0;
+
 	}
 
 	@Override
-	public void delete(TheLoai t) {
-		
-		
+	public int delete(TheLoai t) {
+		return 0;
+
 	}
 
 }

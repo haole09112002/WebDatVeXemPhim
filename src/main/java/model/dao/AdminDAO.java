@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,7 +53,7 @@ public class AdminDAO implements INewDAO<Admin>{
 	}
 
 	@Override
-	public void add(Admin admin) {
+	public int add(Admin admin) {
 		String sql = "insert into Admin(ten, username, password) values(?,?,?)";
 		PreparedStatement statement = null;
 		try {
@@ -62,14 +61,15 @@ public class AdminDAO implements INewDAO<Admin>{
 			statement.setString(1, admin.getTen());
 			statement.setString(2, admin.getUsername());
 			statement.setString(3, admin.getPassword());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+			return 0;
 		}
 	}
 
 	@Override
-	public void update(Admin admin) {
+	public int update(Admin admin) {
 		String sql = "update  Admin set ten = ?, username = ?, password = ? where idAdmin = ?";
 		PreparedStatement statement = null;
 		try {
@@ -78,25 +78,46 @@ public class AdminDAO implements INewDAO<Admin>{
 			statement.setString(2, admin.getUsername());
 			statement.setString(3, admin.getPassword());
 			statement.setInt(3, admin.getIdAdmin());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+			return 0;
 		}
 		
 	}
 
 	@Override
-	public void delete(Admin admin) {
+	public int delete(Admin admin) {
 		String sql = "delete from  Admin  where idAdmin = ?";
 		PreparedStatement statement = null;
 		try {
 			statement = DBHelper.getConnection().prepareStatement(sql);
 			statement.setInt(1, admin.getIdAdmin());
-			statement.executeUpdate();
+			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+			return 0;
 		}
 		
+	}
+	public Admin checkLogin(String username, String password)
+	{
+		String sql = "Select * from Admin where username = ? and password = ?";
+		PreparedStatement statement = null;
+			try {
+				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement.setString(1, username);
+				statement.setString(2, password);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					int idAdmin = rs.getInt(0);
+					String ten = rs.getString(1);
+				 return new Admin(idAdmin, ten, username, password);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
