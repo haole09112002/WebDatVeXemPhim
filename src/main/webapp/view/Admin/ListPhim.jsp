@@ -33,7 +33,6 @@ h1 {
 
 <div class="container body-container">
 	<h1>Danh sách phim</h1>
-	<h2>Table</h2>
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table">
@@ -80,7 +79,7 @@ h1 {
 					<td><a href=”″>Xóa</a></td>
 				</tr>
 			</table>
-			<button class="btn btn-primary">Thêm phim</button>
+			<button class="btn btn-outline-secondary">Thêm phim</button>
 		</div>
 	</div>
 </div>
