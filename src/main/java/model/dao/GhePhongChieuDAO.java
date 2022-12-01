@@ -1,18 +1,15 @@
 package model.dao;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.startup.SetAllPropertiesRule;
 
 import model.bean.GhePhongChieu;
-import model.bean.GioChieu;
-import model.bean.Phim;
+
 
 public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 
