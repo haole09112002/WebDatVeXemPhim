@@ -1,6 +1,7 @@
 package model.bo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.bean.Phim;
@@ -38,16 +39,23 @@ public class PhimBO {
 	{
 		return phimDAO.getPhimByIdTheLoai(idTheLoai);
 	}
-	
+	public List<Phim> getPhimByNameAndTheLoai(String name, int idTheLoai)
+	{
+		List<Phim> results = new ArrayList<>();
+		for(Phim p : phimDAO.getPhimByIdTheLoai(idTheLoai))
+		{
+			if(p.getTenPhim().contains(name))
+				results.add(p);
+		}
+		return results;
+		
+	}
 	public List<Phim> getPhimByNgay(Date ngay)
 	{
 		return phimDAO.getPhimByNgayChieu(ngay);
 	}
 	
-//	public List<Phim> getPhimByIdRap(int idRap)
-//	{
-//		return null;
-//	}
+
 	
 	public Phim getPhimByIdLichChieu(int idLich)
 	{

@@ -15,11 +15,11 @@ public class TheLoaiDAO implements INewDAO<TheLoai> {
 		String sql = "Select * from TheLoai";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idTheLoai = rs.getInt(0);
-				String tenTheLoai = rs.getString(1);
+				int idTheLoai = rs.getInt(1);
+				String tenTheLoai = rs.getString(2);
 				results.add(new TheLoai(idTheLoai, tenTheLoai));
 			}
 		} catch (SQLException e) {
@@ -33,12 +33,12 @@ public class TheLoaiDAO implements INewDAO<TheLoai> {
 		String sql = "Select * from TheLoai where idTheLoai = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idTheLoai = rs.getInt(0);
-				String tenTheLoai = rs.getString(1);
+				int idTheLoai = rs.getInt(1);
+				String tenTheLoai = rs.getString(2);
 				return new TheLoai(idTheLoai, tenTheLoai);
 			}
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class TheLoaiDAO implements INewDAO<TheLoai> {
 		String sql = "insert into TheLoai(tenTheLoai) values (?)";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement =DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, t.getTenTheLoai());
 			return statement.executeUpdate();
 		} catch (SQLException e) {
@@ -67,7 +67,7 @@ public class TheLoaiDAO implements INewDAO<TheLoai> {
 		String sql = "update TheLoai set tenTheLoai = ? where idTheLoai = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, t.getTenTheLoai());
 			statement.setInt(2, t.getIdTheLoai());
 			return statement.executeUpdate();

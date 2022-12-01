@@ -15,11 +15,11 @@ public class ChiTietVeDAO implements INewDAO<ChiTietVe> {
 		String sql = "Select * from ChiTietVe";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idVe = rs.getInt(0);
-				int idGhe = rs.getInt(1);
+				int idVe = rs.getInt(1);
+				int idGhe = rs.getInt(2);
 				results.add(new ChiTietVe(idVe, idGhe));
 			}
 		} catch (SQLException e) {
@@ -39,13 +39,13 @@ public class ChiTietVeDAO implements INewDAO<ChiTietVe> {
 		String sql = "Select * from ChiTietVe where idVe = ? and idGhe = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, idVe);
 			statement.setInt(2, idGhe);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idV = rs.getInt(0);
-				int idG = rs.getInt(1);
+				int idV = rs.getInt(1);
+				int idG = rs.getInt(2);
 				return new ChiTietVe(idV, idG);
 			}
 		} catch (SQLException e) {
@@ -59,13 +59,13 @@ public class ChiTietVeDAO implements INewDAO<ChiTietVe> {
 		String sql = "Select * from ChiTietVe where idVe = ? ";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, idVe);
 		
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idV = rs.getInt(0);
-				int idG = rs.getInt(1);
+				int idV = rs.getInt(1);
+				int idG = rs.getInt(2);
 				results.add( new ChiTietVe(idV, idG));
 			}
 		} catch (SQLException e) {
@@ -79,7 +79,7 @@ public class ChiTietVeDAO implements INewDAO<ChiTietVe> {
 		String sql = "insert into ChiTietVe(idVe, idGhe) values (?, ?)";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, t.getIdVe());
 			statement.setInt(2, t.getIdGhe());
 			return statement.executeUpdate();

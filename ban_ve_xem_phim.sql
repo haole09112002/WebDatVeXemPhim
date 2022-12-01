@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`idAdmin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.admin: ~2 rows (approximately)
+-- Dumping data for table rapchieuphim.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`idAdmin`, `ten`, `username`, `password`) VALUES
 	(1, 'Hào', 'admin1', '123456'),
@@ -66,9 +66,9 @@ CREATE TABLE IF NOT EXISTS `ghephongchieu` (
   PRIMARY KEY (`idGhe`),
   KEY `FK_Ghe_PhongChieu` (`idPhong`),
   CONSTRAINT `FK_Ghe_PhongChieu` FOREIGN KEY (`idPhong`) REFERENCES `phongchieu` (`idPhong`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.ghephongchieu: ~57 rows (approximately)
+-- Dumping data for table rapchieuphim.ghephongchieu: ~56 rows (approximately)
 /*!40000 ALTER TABLE `ghephongchieu` DISABLE KEYS */;
 INSERT INTO `ghephongchieu` (`idGhe`, `tenGhe`, `trangThai`, `idPhong`) VALUES
 	(1, 'A1', 1, 1),
@@ -127,28 +127,31 @@ INSERT INTO `ghephongchieu` (`idGhe`, `tenGhe`, `trangThai`, `idPhong`) VALUES
 	(57, 'A3', 0, 2),
 	(58, 'A3', 0, 2),
 	(59, 'A3', 0, 2),
-	(60, 'A3', 0, 2);
+	(60, 'A3', 0, 2),
+	(61, 'A3', 0, 2),
+	(62, 'A3', 0, 2),
+	(63, 'A3', 0, 2),
+	(64, 'A3', 0, 2),
+	(65, 'A3', 0, 2),
+	(66, 'A3', 0, 2);
 /*!40000 ALTER TABLE `ghephongchieu` ENABLE KEYS */;
 
 -- Dumping structure for table rapchieuphim.giochieu
 CREATE TABLE IF NOT EXISTS `giochieu` (
   `idGioChieu` int(11) NOT NULL AUTO_INCREMENT,
   `GioChieu` time DEFAULT NULL,
-  `idRap` int(11) NOT NULL,
-  PRIMARY KEY (`idGioChieu`),
-  KEY `FK_GioChieu_Rap` (`idRap`),
-  CONSTRAINT `FK_GioChieu_Rap` FOREIGN KEY (`idRap`) REFERENCES `rap` (`idRap`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idGioChieu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table rapchieuphim.giochieu: ~6 rows (approximately)
 /*!40000 ALTER TABLE `giochieu` DISABLE KEYS */;
-INSERT INTO `giochieu` (`idGioChieu`, `GioChieu`, `idRap`) VALUES
-	(3, '17:00:00', 1),
-	(5, '19:00:00', 1),
-	(9, '21:00:00', 1),
-	(11, '20:00:00', 1),
-	(13, '13:00:00', 2),
-	(14, '15:00:00', 2);
+INSERT INTO `giochieu` (`idGioChieu`, `GioChieu`) VALUES
+	(3, '17:00:00'),
+	(5, '19:00:00'),
+	(9, '21:00:00'),
+	(11, '20:00:00'),
+	(13, '13:00:00'),
+	(14, '15:00:00');
 /*!40000 ALTER TABLE `giochieu` ENABLE KEYS */;
 
 -- Dumping structure for table rapchieuphim.lichchieu
@@ -205,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `phim` (
   CONSTRAINT `FK_Phim_TheLoai` FOREIGN KEY (`idTheLoai`) REFERENCES `theloai` (`idTheLoai`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.phim: ~8 rows (approximately)
+-- Dumping data for table rapchieuphim.phim: ~7 rows (approximately)
 /*!40000 ALTER TABLE `phim` DISABLE KEYS */;
 INSERT INTO `phim` (`idPhim`, `tenPhim`, `moTa`, `thoiLuong`, `nhaSanXuat`, `doTuoi`, `daoDien`, `ngayKhoiChieu`, `ngayKetThuc`, `linkTrailer`, `linkAnh`, `idTheLoai`, `dienVien`, `quocGia`) VALUES
 	(12, 'Hạnh Phúc Máu', 'Sau câu thần chú bí ẩn, Hà Phương (NSND Kim Xuân) tiếp tục nhấn mạnh sự bất hạnh của bản thân khi gia nhập gia tộc Vương Đình! Liệu rằng tất cả sẽ khép lại khi Hà Phương chuyển giao quyền lực cho con trai đích tôn!', '110', 'Hữu Tài', '18', 'Hữu Tài', '2022-11-25', '2023-01-01', 'https://youtu.be/AZsZjzxpVwQ', 'https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/h/p/hpm_poster_2x3_1_.jpg', 1, 'NSND Kim Xuân', 'Việt Nam'),
@@ -221,38 +224,19 @@ INSERT INTO `phim` (`idPhim`, `tenPhim`, `moTa`, `thoiLuong`, `nhaSanXuat`, `doT
 -- Dumping structure for table rapchieuphim.phongchieu
 CREATE TABLE IF NOT EXISTS `phongchieu` (
   `idPhong` int(11) NOT NULL AUTO_INCREMENT,
-  `idRap` int(11) DEFAULT NULL,
   `tenPhong` varchar(100) DEFAULT NULL,
   `soGhe` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idPhong`),
-  KEY `FK_PhongChieu_Rap` (`idRap`),
-  CONSTRAINT `FK_PhongChieu_Rap` FOREIGN KEY (`idRap`) REFERENCES `rap` (`idRap`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`idPhong`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.phongchieu: ~4 rows (approximately)
+-- Dumping data for table rapchieuphim.phongchieu: ~2 rows (approximately)
 /*!40000 ALTER TABLE `phongchieu` DISABLE KEYS */;
-INSERT INTO `phongchieu` (`idPhong`, `idRap`, `tenPhong`, `soGhe`) VALUES
-	(1, 1, 'Rạp 1', 30),
-	(2, 1, 'Rạp  2', 30),
-	(3, 2, 'Phòng vip1', 30),
-	(4, 2, 'Phòng vip2', 30);
+INSERT INTO `phongchieu` (`idPhong`, `tenPhong`, `soGhe`) VALUES
+	(1, 'Rạp 1', 30),
+	(2, 'Rạp  2', 30),
+	(3, 'Phòng vip1', 30),
+	(4, 'Phòng vip2', 30);
 /*!40000 ALTER TABLE `phongchieu` ENABLE KEYS */;
-
--- Dumping structure for table rapchieuphim.rap
-CREATE TABLE IF NOT EXISTS `rap` (
-  `idRap` int(11) NOT NULL AUTO_INCREMENT,
-  `tenRap` varchar(100) DEFAULT NULL,
-  `diaChi` varchar(200) DEFAULT NULL,
-  `soPhong` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idRap`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table rapchieuphim.rap: ~2 rows (approximately)
-/*!40000 ALTER TABLE `rap` DISABLE KEYS */;
-INSERT INTO `rap` (`idRap`, `tenRap`, `diaChi`, `soPhong`) VALUES
-	(1, 'BHD Start', '13 NguyenVan Linh', 3),
-	(2, 'Lotte CIname', '26 ', 3);
-/*!40000 ALTER TABLE `rap` ENABLE KEYS */;
 
 -- Dumping structure for table rapchieuphim.theloai
 CREATE TABLE IF NOT EXISTS `theloai` (
@@ -261,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `theloai` (
   PRIMARY KEY (`idTheLoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.theloai: ~6 rows (approximately)
+-- Dumping data for table rapchieuphim.theloai: ~5 rows (approximately)
 /*!40000 ALTER TABLE `theloai` DISABLE KEYS */;
 INSERT INTO `theloai` (`idTheLoai`, `tenTheLoai`) VALUES
 	(1, 'Drama'),
