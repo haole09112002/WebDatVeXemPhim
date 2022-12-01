@@ -27,7 +27,7 @@ public class DBHelper {
 		return instance;
 	}
 
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		return conn;
 	}
 

@@ -18,23 +18,23 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "Select * from Phim";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				 int idPhim = rs.getInt(0);
-				 String tenPhim = rs.getString(1);
-				 String moTa = rs.getString(2);
-				 String thoiLuong = rs.getString(3);
-				 String nhaSanXuat = rs.getString(4);
-				 String doTuoi = rs.getString(5);
-				 String daoDien = rs.getString(6);
-				 Date ngayKhoiChieu = rs.getDate(7);
-				 Date ngayKetThuc = rs.getDate(8);
-				 String linkTrailer = rs.getString(9);
-				 String linkAnh = rs.getString(10);
-				 int idTheLoai = rs.getInt(11);
-				 String dienVien = rs.getString(12);
-				 String quocGia = rs.getString(13);
+				 int idPhim = rs.getInt(1);
+				 String tenPhim = rs.getString(2);
+				 String moTa = rs.getString(3);
+				 String thoiLuong = rs.getString(4);
+				 String nhaSanXuat = rs.getString(5);
+				 String doTuoi = rs.getString(6);
+				 String daoDien = rs.getString(7);
+				 Date ngayKhoiChieu = rs.getDate(8);
+				 Date ngayKetThuc = rs.getDate(9);
+				 String linkTrailer = rs.getString(10);
+				 String linkAnh = rs.getString(11);
+				 int idTheLoai = rs.getInt(12);
+				 String dienVien = rs.getString(13);
+				 String quocGia = rs.getString(14);
 				 Phim p = new Phim(idPhim, tenPhim, moTa, thoiLuong, nhaSanXuat, doTuoi, daoDien, ngayKhoiChieu, ngayKetThuc, linkTrailer, linkAnh
 						 ,idTheLoai, dienVien, quocGia);
 				 results.add(p);
@@ -50,24 +50,24 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "Select * from Phim where idPhim = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				 int idPhim = rs.getInt("idPhim");
-				 String tenPhim = rs.getString(1);
-				 String moTa = rs.getString(2);
-				 String thoiLuong = rs.getString(3);
-				 String nhaSanXuat = rs.getString(4);
-				 String doTuoi = rs.getString(5);
-				 String daoDien = rs.getString(6);
-				 Date ngayKhoiChieu = rs.getDate(7);
-				 Date ngayKetThuc = rs.getDate(8);
-				 String linkTrailer = rs.getString(9);
-				 String linkAnh = rs.getString(10);
-				 int idTheLoai = rs.getInt(11);
-				 String dienVien = rs.getString(12);
-				 String quocGia = rs.getString(13);
+				 int idPhim = rs.getInt(1);
+				 String tenPhim = rs.getString(2);
+				 String moTa = rs.getString(3);
+				 String thoiLuong = rs.getString(4);
+				 String nhaSanXuat = rs.getString(5);
+				 String doTuoi = rs.getString(6);
+				 String daoDien = rs.getString(7);
+				 Date ngayKhoiChieu = rs.getDate(8);
+				 Date ngayKetThuc = rs.getDate(9);
+				 String linkTrailer = rs.getString(10);
+				 String linkAnh = rs.getString(11);
+				 int idTheLoai = rs.getInt(12);
+				 String dienVien = rs.getString(13);
+				 String quocGia = rs.getString(14);
 				 Phim p = new Phim(idPhim, tenPhim, moTa, thoiLuong, nhaSanXuat, doTuoi, daoDien, ngayKhoiChieu, ngayKetThuc, linkTrailer, linkAnh
 						 ,idTheLoai, dienVien, quocGia);
 				 return p;
@@ -86,7 +86,7 @@ public class PhimDAO implements INewDAO<Phim> {
 				+ "	(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, p.getTenPhim());
 			statement.setString(2, p.getMoTa());
 			statement.setString(3, p.getThoiLuong());
@@ -115,7 +115,7 @@ public class PhimDAO implements INewDAO<Phim> {
 				+ "where idPhim = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, p.getTenPhim());
 			statement.setString(2, p.getMoTa());
 			statement.setString(3, p.getThoiLuong());
@@ -143,7 +143,7 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "delete from Phim where idPhim = ?";
 				PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, p.getIdPhim());
 			return statement.executeUpdate();
 		} catch (SQLException e1) {
@@ -159,24 +159,24 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "Select * from Phim where tenPhim = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, name);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				 int idPhim = rs.getInt(0);
-				 String tenPhim = rs.getString(1);
-				 String moTa = rs.getString(2);
-				 String thoiLuong = rs.getString(3);
-				 String nhaSanXuat = rs.getString(4);
-				 String doTuoi = rs.getString(5);
-				 String daoDien = rs.getString(6);
-				 Date ngayKhoiChieu = rs.getDate(7);
-				 Date ngayKetThuc = rs.getDate(8);
-				 String linkTrailer = rs.getString(9);
-				 String linkAnh = rs.getString(10);
-				 int idTheLoai = rs.getInt(11);
-				 String dienVien = rs.getString(12);
-				 String quocGia = rs.getString(13);
+				 int idPhim = rs.getInt(1);
+				 String tenPhim = rs.getString(2);
+				 String moTa = rs.getString(3);
+				 String thoiLuong = rs.getString(4);
+				 String nhaSanXuat = rs.getString(5);
+				 String doTuoi = rs.getString(6);
+				 String daoDien = rs.getString(7);
+				 Date ngayKhoiChieu = rs.getDate(8);
+				 Date ngayKetThuc = rs.getDate(9);
+				 String linkTrailer = rs.getString(10);
+				 String linkAnh = rs.getString(11);
+				 int idTheLoai = rs.getInt(12);
+				 String dienVien = rs.getString(13);
+				 String quocGia = rs.getString(14);
 				 Phim p = new Phim(idPhim, tenPhim, moTa, thoiLuong, nhaSanXuat, doTuoi, daoDien, ngayKhoiChieu, ngayKetThuc, linkTrailer, linkAnh
 						 ,idTheLoai, dienVien, quocGia);
 				 results.add(p);
@@ -192,24 +192,24 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "Select * from Phim where idTheLoai = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				 int idPhim = rs.getInt(0);
-				 String tenPhim = rs.getString(1);
-				 String moTa = rs.getString(2);
-				 String thoiLuong = rs.getString(3);
-				 String nhaSanXuat = rs.getString(4);
-				 String doTuoi = rs.getString(5);
-				 String daoDien = rs.getString(6);
-				 Date ngayKhoiChieu = rs.getDate(7);
-				 Date ngayKetThuc = rs.getDate(8);
-				 String linkTrailer = rs.getString(9);
-				 String linkAnh = rs.getString(10);
-				 int idTheLoai = rs.getInt(11);
-				 String dienVien = rs.getString(12);
-				 String quocGia = rs.getString(13);
+				 int idPhim = rs.getInt(1);
+				 String tenPhim = rs.getString(2);
+				 String moTa = rs.getString(3);
+				 String thoiLuong = rs.getString(4);
+				 String nhaSanXuat = rs.getString(5);
+				 String doTuoi = rs.getString(6);
+				 String daoDien = rs.getString(7);
+				 Date ngayKhoiChieu = rs.getDate(8);
+				 Date ngayKetThuc = rs.getDate(9);
+				 String linkTrailer = rs.getString(10);
+				 String linkAnh = rs.getString(11);
+				 int idTheLoai = rs.getInt(12);
+				 String dienVien = rs.getString(13);
+				 String quocGia = rs.getString(14);
 				 Phim p = new Phim(idPhim, tenPhim, moTa, thoiLuong, nhaSanXuat, doTuoi, daoDien, ngayKhoiChieu, ngayKetThuc, linkTrailer, linkAnh
 						 ,idTheLoai, dienVien, quocGia);
 				 results.add(p);
@@ -226,7 +226,7 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "SELECT DISTINCT  lichchieu.idPhim FROM lichchieu WHERE lichchieu.ngaychieu = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement =DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setDate(1, date);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
@@ -244,24 +244,24 @@ public class PhimDAO implements INewDAO<Phim> {
 		String sql = "SELECT phim.* FROM phim, lichchieu WHERE lichchieu.idLichchieu = ? AND lichchieu.idPhim= phim.idPhim";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, idLC);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				 int idPhim = rs.getInt("idPhim");
-				 String tenPhim = rs.getString(1);
-				 String moTa = rs.getString(2);
-				 String thoiLuong = rs.getString(3);
-				 String nhaSanXuat = rs.getString(4);
-				 String doTuoi = rs.getString(5);
-				 String daoDien = rs.getString(6);
-				 Date ngayKhoiChieu = rs.getDate(7);
-				 Date ngayKetThuc = rs.getDate(8);
-				 String linkTrailer = rs.getString(9);
-				 String linkAnh = rs.getString(10);
-				 int idTheLoai = rs.getInt(11);
-				 String dienVien = rs.getString(12);
-				 String quocGia = rs.getString(13);
+				 int idPhim = rs.getInt(1);
+				 String tenPhim = rs.getString(2);
+				 String moTa = rs.getString(3);
+				 String thoiLuong = rs.getString(4);
+				 String nhaSanXuat = rs.getString(5);
+				 String doTuoi = rs.getString(6);
+				 String daoDien = rs.getString(7);
+				 Date ngayKhoiChieu = rs.getDate(8);
+				 Date ngayKetThuc = rs.getDate(9);
+				 String linkTrailer = rs.getString(10);
+				 String linkAnh = rs.getString(11);
+				 int idTheLoai = rs.getInt(12);
+				 String dienVien = rs.getString(13);
+				 String quocGia = rs.getString(14);
 				 Phim p = new Phim(idPhim, tenPhim, moTa, thoiLuong, nhaSanXuat, doTuoi, daoDien, ngayKhoiChieu, ngayKetThuc, linkTrailer, linkAnh
 						 ,idTheLoai, dienVien, quocGia);
 				 return p;

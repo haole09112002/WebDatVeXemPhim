@@ -27,14 +27,14 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 		String sql = "Select * from GhePhongChieu where idGhe = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idGhe = rs.getInt(0);
-				String tenGhe = rs.getString(1);
-				int trangThai = rs.getInt(2);
-				int idPhong = rs.getInt(3);
+				int idGhe = rs.getInt(1);
+				String tenGhe = rs.getString(2);
+				int trangThai = rs.getInt(3);
+				int idPhong = rs.getInt(4);
 				return new GhePhongChieu(idGhe, tenGhe, trangThai, idPhong);
 			}
 		} catch (SQLException e1) {
@@ -47,7 +47,7 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 	public int add(GhePhongChieu t) {
 		String sql = "insert into GhePhongChieu(tenGhe, trangThai, idPhong) values (?,?,?)";
 		try {
-			PreparedStatement statement = DBHelper.getConnection().prepareStatement(sql);
+			PreparedStatement statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, t.getTenGhe());
 			statement.setInt(2, t.getTrangThai());
 			statement.setInt(3, t.getIdPhong());
@@ -63,7 +63,7 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 	public int update(GhePhongChieu t) {
 		String sql = "update GhePhongChieu set tenGhe = ?, trangThai = ?";
 		try {
-			PreparedStatement statement = DBHelper.getConnection().prepareStatement(sql);
+			PreparedStatement statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, t.getTenGhe());
 			statement.setInt(2, t.getTrangThai());
 			return statement.executeUpdate();
@@ -86,14 +86,14 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 		String sql = "SELECT * FROM ghephongchieu g, chitietve ct WHERE g.idGhe = ct.idGhe && ct.idVe = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, idVe);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idGhe = rs.getInt(0);
-					String tenGhe = rs.getString(1);
-					int trangThai = rs.getInt(2);
-					int idPhong = rs.getInt(3);
+					int idGhe = rs.getInt(1);
+					String tenGhe = rs.getString(2);
+					int trangThai = rs.getInt(3);
+					int idPhong = rs.getInt(4);
 				 results.add( new  GhePhongChieu(idGhe, tenGhe, trangThai, idPhong));
 			}
 		} catch (SQLException e) {
@@ -109,14 +109,14 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 		String sql = "SELECT * FROM ghephongchieu g, phongchieu pc WHERE g.idPhong = pc.idPhong && g.idPhong = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, idPhong);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				int idGhe = rs.getInt(0);
-				String tenGhe = rs.getString(1);
-				int trangThai = rs.getInt(2);
-				int idP = rs.getInt(3);
+				int idGhe = rs.getInt(1);
+				String tenGhe = rs.getString(2);
+				int trangThai = rs.getInt(3);
+				int idP = rs.getInt(4);
 			 results.add( new  GhePhongChieu(idGhe, tenGhe, trangThai, idP));
 		}
 	} catch (SQLException e) {

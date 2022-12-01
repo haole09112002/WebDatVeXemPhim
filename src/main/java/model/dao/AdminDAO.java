@@ -16,13 +16,13 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "Select * from Admin";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idAdmin = rs.getInt(0);
-					String ten = rs.getString(1);
-					String username = rs.getString(2);
-					String password = rs.getString(3);
+					int idAdmin = rs.getInt(1);
+					String ten = rs.getString(2);
+					String username = rs.getString(3);
+					String password = rs.getString(4);
 				 results.add(new Admin(idAdmin, ten, username, password));
 			}
 		} catch (SQLException e) {
@@ -36,14 +36,14 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "Select * from Admin where idAdmin = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement =DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, id);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idAdmin = rs.getInt(0);
-					String ten = rs.getString(1);
-					String username = rs.getString(2);
-					String password = rs.getString(3);
+					int idAdmin = rs.getInt(1);
+					String ten = rs.getString(2);
+					String username = rs.getString(3);
+					String password = rs.getString(4);
 				 return new Admin(idAdmin, ten, username, password);
 			}
 		} catch (SQLException e) {
@@ -57,7 +57,7 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "insert into Admin(ten, username, password) values(?,?,?)";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, admin.getTen());
 			statement.setString(2, admin.getUsername());
 			statement.setString(3, admin.getPassword());
@@ -73,7 +73,7 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "update  Admin set ten = ?, username = ?, password = ? where idAdmin = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setString(1, admin.getTen());
 			statement.setString(2, admin.getUsername());
 			statement.setString(3, admin.getPassword());
@@ -91,7 +91,7 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "delete from  Admin  where idAdmin = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, admin.getIdAdmin());
 			return statement.executeUpdate();
 		} catch (SQLException e1) {
@@ -105,13 +105,13 @@ public class AdminDAO implements INewDAO<Admin>{
 		String sql = "Select * from Admin where username = ? and password = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setString(1, username);
 				statement.setString(2, password);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idAdmin = rs.getInt(0);
-					String ten = rs.getString(1);
+					int idAdmin = rs.getInt(1);
+					String ten = rs.getString(2);
 				 return new Admin(idAdmin, ten, username, password);
 			}
 		} catch (SQLException e) {
