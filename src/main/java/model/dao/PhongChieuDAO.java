@@ -16,14 +16,13 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 		String sql = "Select * from PhongChieu";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idPhong = rs.getInt(0);
-					int idRap = rs.getInt(1);
+					int idPhong = rs.getInt(1);
 					String tenPhong = rs.getString(2);
 					int soGhe = rs.getInt(3);
-				 results.add(new PhongChieu(idPhong, idRap, tenPhong, soGhe));
+				 results.add(new PhongChieu(idPhong, tenPhong, soGhe));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -36,15 +35,14 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 		String sql = "Select * from PhongChieu where idPhong = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, id);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idPhong = rs.getInt(0);
-					int idRap = rs.getInt(1);
+					int idPhong = rs.getInt(1);
 					String tenPhong = rs.getString(2);
 					int soGhe = rs.getInt(3);
-				 return new PhongChieu(idPhong, idRap, tenPhong, soGhe);
+				 return new PhongChieu(idPhong, tenPhong, soGhe);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,13 +52,13 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 
 	@Override
 	public int add(PhongChieu t) {
-		String sql = "insert into PhongChieu(idRap, tenPhong, soGhe) values(?,?,?)";
+		String sql = "insert into PhongChieu( tenPhong, soGhe) values(?,?)";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
-			statement.setInt(1, t.getIdRap());
-			statement.setString(2, t.getTenPhong());
-			statement.setInt(3, t.getSoGhe());
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+		
+			statement.setString(1, t.getTenPhong());
+			statement.setInt(2, t.getSoGhe());
 			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -71,14 +69,14 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 
 	@Override
 	public int update(PhongChieu t) {
-		String sql = "update  PhongChieu set idRap = ?, tenPhong = ?, soGhe = ? where idPhong = ?";
+		String sql = "update  PhongChieu set  tenPhong = ?, soGhe = ? where idPhong = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
-			statement.setInt(1, t.getIdRap());
-			statement.setString(2, t.getTenPhong());
-			statement.setInt(3, t.getSoGhe());
-			statement.setInt(4, t.getIdPhong());
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+		
+			statement.setString(1, t.getTenPhong());
+			statement.setInt(2, t.getSoGhe());
+			statement.setInt(3, t.getIdPhong());
 			return statement.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -92,7 +90,7 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 		String sql = "delete from   PhongChieu  where idPhong = ?";
 		PreparedStatement statement = null;
 		try {
-			statement = DBHelper.getConnection().prepareStatement(sql);
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, t.getIdPhong());
 			return statement.executeUpdate();
 		} catch (SQLException e1) {
@@ -107,17 +105,16 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 				+ "WHERE lichchieu.ngaychieu = ? && lichchieu.idPhim = ? && lichchieu.idGioChieu = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setDate(1, ngay);
 				statement.setInt(2, idPhim);
 				statement.setInt(3, idGio);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idPhong = rs.getInt(0);
-					int idRap = rs.getInt(1);
+					int idPhong = rs.getInt(1);
 					String tenPhong = rs.getString(2);
 					int soGhe = rs.getInt(3);
-				 return new PhongChieu(idPhong, idRap, tenPhong, soGhe);
+				 return new PhongChieu(idPhong, tenPhong, soGhe);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

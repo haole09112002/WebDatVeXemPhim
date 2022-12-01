@@ -15,14 +15,14 @@ public class VeDAO implements INewDAO<Ve> {
 		String sql = "Select * from Ve";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idVe = rs.getInt(0);
-					int idLichChieu = rs.getInt(1);	
-					String tenKhach = rs.getString(2);
-					String soDienThoai = rs.getString(3);
-					Double tongTien = rs.getDouble(4);
+					int idVe = rs.getInt(1);
+					int idLichChieu = rs.getInt(2);	
+					String tenKhach = rs.getString(3);
+					String soDienThoai = rs.getString(4);
+					Double tongTien = rs.getDouble(5);
 					results.add(new Ve( idVe, idLichChieu, tenKhach, soDienThoai, tongTien));
 			}
 		} catch (SQLException e) {
@@ -36,15 +36,15 @@ public class VeDAO implements INewDAO<Ve> {
 		String sql = "Select * from Ve where idVe = ?";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, id);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idVe = rs.getInt(0);
-					int idLichChieu = rs.getInt(1);	
-					String tenKhach = rs.getString(2);
-					String soDienThoai = rs.getString(3);
-					Double tongTien = rs.getDouble(4);
+					int idVe = rs.getInt(1);
+					int idLichChieu = rs.getInt(2);	
+					String tenKhach = rs.getString(3);
+					String soDienThoai = rs.getString(4);
+					Double tongTien = rs.getDouble(5);
 					return new Ve( idVe, idLichChieu, tenKhach, soDienThoai, tongTien);
 			}
 		} catch (SQLException e) {
@@ -58,7 +58,7 @@ public class VeDAO implements INewDAO<Ve> {
 		String sql = "insert into Ve(idLichChieu, tenKhach, soDienThoai, tongTien) values (?,?,?,?)";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, t.getIdLichChieu());
 				statement.setString(2, t.getTenKhach());
 				statement.setString(3, t.getSoDienThoai());
@@ -86,15 +86,15 @@ public class VeDAO implements INewDAO<Ve> {
 		String sql = "Select * from Ve where idLichChieu = ?";
 		PreparedStatement statement = null;
 		try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, id);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idVe = rs.getInt(0);
-					int idLichChieu = rs.getInt(1);	
-					String tenKhach = rs.getString(2);
-					String soDienThoai = rs.getString(3);
-					Double tongTien = rs.getDouble(4);
+					int idVe = rs.getInt(1);
+					int idLichChieu = rs.getInt(2);	
+					String tenKhach = rs.getString(3);
+					String soDienThoai = rs.getString(4);
+					Double tongTien = rs.getDouble(5);
 					results.add(new Ve( idVe, idLichChieu, tenKhach, soDienThoai, tongTien));
 			}
 		} catch (SQLException e) {

@@ -6,15 +6,14 @@ import java.sql.Time;
 public class GioChieu {
 	private int idGioChieu;
 	private Time gioChieu;
-	private int idRap;
 	public GioChieu() {
 		// TODO Auto-generated constructor stub
 	}
-	public GioChieu(int idGioChieu, Time gioChieu, int idRap) {
+	public GioChieu(int idGioChieu, Time gioChieu) {
 		super();
 		this.idGioChieu = idGioChieu;
 		this.gioChieu = gioChieu;
-		this.idRap = idRap;
+	
 	}
 
 	public int getIdGioChieu() {
@@ -29,12 +28,7 @@ public class GioChieu {
 	public void setGioChieu(Time gioChieu) {
 		this.gioChieu = gioChieu;
 	}
-	public int getIdRap() {
-		return idRap;
-	}
-	public void setIdRap(int idRap) {
-		this.idRap = idRap;
-	}
+
 	
 	
 }

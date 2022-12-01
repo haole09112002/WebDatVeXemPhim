@@ -8,9 +8,9 @@ import java.util.List;
 
 public class GioChieuBO {
 	private GioChieuDAO gioChieuDAO = new GioChieuDAO();
-	public List<GioChieu> getByIdRapNgayIdPhim(int idRap, Date date, int idPhim )
+	public List<GioChieu> getByNgayIdPhim(  Date date, int idPhim )
 	{
-		return gioChieuDAO.getByIdRapNgayIdPhim(idRap, date, idPhim);
+		return gioChieuDAO.getByNgayIdPhim( date, idPhim);
 	}
 	public List<GioChieu> getAll()
 	{

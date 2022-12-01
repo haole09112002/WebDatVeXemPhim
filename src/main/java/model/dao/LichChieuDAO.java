@@ -18,15 +18,15 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		String sql = "Select * from LichChieu";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idLichChieu = rs.getInt(0);
-					int idPhim = rs.getInt(1);
-					int idPhong = rs.getInt(2);
-					Date ngayChieu = rs.getDate(3);
-					int idGioChieu = rs.getInt(4);
-					int giaVe = rs.getInt(5);
+					int idLichChieu = rs.getInt(1);
+					int idPhim = rs.getInt(2);
+					int idPhong = rs.getInt(3);
+					Date ngayChieu = rs.getDate(4);
+					int idGioChieu = rs.getInt(5);
+					int giaVe = rs.getInt(6);
 				 results.add(new LichChieu(idLichChieu, idPhim, idPhong, ngayChieu, idGioChieu, giaVe));
 			}
 		} catch (SQLException e) {
@@ -40,16 +40,16 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		String sql = "Select * from LichChieu where idLichChieu = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, id);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idLichChieu = rs.getInt(0);
-					int idPhim = rs.getInt(1);
-					int idPhong = rs.getInt(2);
-					Date ngayChieu = rs.getDate(3);
-					int idGioChieu = rs.getInt(4);
-					int giaVe = rs.getInt(5);
+					int idLichChieu = rs.getInt(1);
+					int idPhim = rs.getInt(2);
+					int idPhong = rs.getInt(3);
+					Date ngayChieu = rs.getDate(4);
+					int idGioChieu = rs.getInt(5);
+					int giaVe = rs.getInt(6);
 				return new LichChieu(idLichChieu, idPhim, idPhong, ngayChieu, idGioChieu, giaVe);
 			}
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 	public int add(LichChieu t) {
 		String sql = "insert into LichChieu(idPhim, idPhong, ngayChieu, idGioChieu, giaVe) values (?,?,?,?,?)";
 		try {
-			PreparedStatement statement = DBHelper.getConnection().prepareStatement(sql);
+			PreparedStatement statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 			statement.setInt(1, t.getIdPhim());
 			statement.setInt(1, t.getIdPhong());
 			statement.setDate(1, t.getNgayChieu());
@@ -92,16 +92,16 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		String sql = "Select * from LichChieu where ngayChieu = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setDate(1, date);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idLichChieu = rs.getInt(0);
-					int idPhim = rs.getInt(1);
-					int idPhong = rs.getInt(2);
-					Date ngayChieu = rs.getDate(3);
-					int idGioChieu = rs.getInt(4);
-					int giaVe = rs.getInt(5);
+					int idLichChieu = rs.getInt(1);
+					int idPhim = rs.getInt(2);
+					int idPhong = rs.getInt(3);
+					Date ngayChieu = rs.getDate(4);
+					int idGioChieu = rs.getInt(5);
+					int giaVe = rs.getInt(6);
 				 results.add(new LichChieu(idLichChieu, idPhim, idPhong, ngayChieu, idGioChieu, giaVe));
 			}
 		} catch (SQLException e) {
@@ -115,17 +115,17 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		String sql = "Select * from LichChieu where ngayChieu = ? and idPhim = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setDate(1, date);
 				statement.setInt(2, idP);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idLichChieu = rs.getInt(0);
-					int idPhim = rs.getInt(1);
-					int idPhong = rs.getInt(2);
-					Date ngayChieu = rs.getDate(3);
-					int idGioChieu = rs.getInt(4);
-					int giaVe = rs.getInt(5);
+					int idLichChieu = rs.getInt(1);
+					int idPhim = rs.getInt(2);
+					int idPhong = rs.getInt(3);
+					Date ngayChieu = rs.getDate(4);
+					int idGioChieu = rs.getInt(5);
+					int giaVe = rs.getInt(6);
 				 results.add(new LichChieu(idLichChieu, idPhim, idPhong, ngayChieu, idGioChieu, giaVe));
 			}
 		} catch (SQLException e) {
@@ -137,18 +137,18 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		String sql = "Select * from LichChieu where ngayChieu = ? and idPhim = ? && idGioChieu = ?";
 		PreparedStatement statement = null;
 			try {
-				statement = DBHelper.getConnection().prepareStatement(sql);
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setDate(1, date);
 				statement.setInt(2, idP);
 				statement.setInt(3, idGio);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
-					int idLichChieu = rs.getInt(0);
-					int idPhim = rs.getInt(1);
-					int idPhong = rs.getInt(2);
-					Date ngayChieu = rs.getDate(3);
-					int idGioChieu = rs.getInt(4);
-					int giaVe = rs.getInt(5);
+					int idLichChieu = rs.getInt(1);
+					int idPhim = rs.getInt(2);
+					int idPhong = rs.getInt(3);
+					Date ngayChieu = rs.getDate(4);
+					int idGioChieu = rs.getInt(5);
+					int giaVe = rs.getInt(6);
 				return new LichChieu(idLichChieu, idPhim, idPhong, ngayChieu, idGioChieu, giaVe);
 			}
 		} catch (SQLException e) {
