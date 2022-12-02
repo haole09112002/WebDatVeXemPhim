@@ -36,10 +36,13 @@
       <div class="list-group" id="list-tab" role="tablist" style="margin-top: -20px">
         <h6>Danh Mục</h6>
    		<% ArrayList<TheLoai> theLoaiArray = (ArrayList<TheLoai>)request.getAttribute("theloais");
+   		int checkTheLoai = -1;
+   		if(request.getAttribute("idTheLoai") != null)
+   		checkTheLoai = (Integer)request.getAttribute("idTheLoai");
    			for(int i = 0; i < theLoaiArray.size();++i){
    				
    		%>
-        <a class="list-group-item" data-toggle="list" href="../controller/HomeController.java?idTheLoai=<%= theLoaiArray.get(i).getIdTheLoai() %>" role="tab" name="<%= theLoaiArray.get(i).getIdTheLoai() %>"
+        <a class="list-group-item <%if(checkTheLoai ==theLoaiArray.get(i).getIdTheLoai() ){ out.println("active");} %>" data-toggle="list" href="Home?idTheLoai=<%= theLoaiArray.get(i).getIdTheLoai() %>" role="tab" name="<%= theLoaiArray.get(i).getIdTheLoai() %>"
           aria-controls="home"><%= theLoaiArray.get(i).getTenTheLoai()%></a>
    			<%} %>
       </div>
@@ -47,11 +50,11 @@
     <div class="col-sm-9">
       <div class="container d-flex mt-4 ml-4">
         <div class="row" id="search-bar">
-          <form class="form-inline">
+          <form class="form-inline" action ="Home" method="GET">
             <label class="sr-only" for="inlineFormInputName2">Name</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="search" placeholder="search name ..."
               name="txtSearch" />
-            <button type="submit" class="btn btn-primary mb-2" id="submit-search">
+            <button type="submit" class="btn btn-primary mb-2" id="submit-search" name="submitSearch">
               Search
             </button>
           </form>
@@ -64,6 +67,7 @@
    						for(int i = 0; i < phimArray.size();++i){
    				
    		%>
+   		<form method="get" action="Home" style = "display: contents;">
             <div class="col-md-4 md-5 pb-3">
               <div class="card">
                 <img src="https://movie-list.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg" alt="" class="card-img-top w-100 p-2" height = "300"/>
@@ -76,16 +80,17 @@
                     <p class="card-text mr-2 text-success"><%= phimArray.get(i).getThoiLuong() %></p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <button type="button" data-target="#product_view" data-toggle="modal" class="btn btn-primary">
+                    <button type="submit" name ="idPhim" data-target="#product_view" data-toggle="modal" class="btn btn-primary" value ="<%= phimArray.get(i).getIdPhim()%>">
                       Chi Tiết
                     </button>
-                    <button type="button" data-target="#" data-toggle="modal" class="btn btn-success">
+                    <button type="submit" data-target="#" data-toggle="modal" class="btn btn-success">
                       Đặt Vé
                     </button>
                   </div>
                 </div>
               </div>
             </div>
+   		</form>
    				<%} %>
 
 
