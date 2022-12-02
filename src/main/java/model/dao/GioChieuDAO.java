@@ -82,17 +82,18 @@ public class GioChieuDAO implements INewDAO<GioChieu> {
 		
 	}
 	
-	public List<GioChieu> getByNgayIdPhim( Date date, int idPhim) {
+	public List<GioChieu> getByIdPhimNgayIdPhong(int idPhim, Date date, int idPhong) {
 		List<GioChieu> result = new ArrayList<>();
-		String sql = "SELECT giochieu.idGioChieu , giochieu.giochieu"
+		String sql = "SELECT giochieu.*"
 				+ "FROM giochieu"
 				+ "INNER JOIN lichchieu ON giochieu.idGioChieu = lichchieu.idGioChieu"
-				+ "WHERE idPhim = ? && ngaychieu = ?";
+				+ "WHERE idPhim = ? && ngaychieu = ? && lichchieu.idPhong = ?";
 		PreparedStatement statement = null;
 			try {
 				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setInt(1, idPhim);
 				statement.setDate(2, date);
+				statement.setInt(3, idPhong);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {
 				 GioChieu gioChieu = new  GioChieu(rs.getInt(1), rs.getTime(2));

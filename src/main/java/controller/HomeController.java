@@ -64,7 +64,7 @@ public class HomeController extends HttpServlet {
 		}
 		phims = phimBO.getAllPhim();
 		request.setAttribute("phims", phims);
-		RequestDispatcher rd = request.getRequestDispatcher("/view/testview.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/Client/Home.jsp");
         rd.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());

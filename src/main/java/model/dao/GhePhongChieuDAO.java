@@ -77,29 +77,29 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 		return 0;
 	}
 	
-	public List<GhePhongChieu> getByVe(int idVe)
-	{
-		List<GhePhongChieu> results = new ArrayList<>();
-		String sql = "SELECT * FROM ghephongchieu g, chitietve ct WHERE g.idGhe = ct.idGhe && ct.idVe = ?";
-		PreparedStatement statement = null;
-			try {
-				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
-				statement.setInt(1, idVe);
-				ResultSet rs = statement.executeQuery();
-				while (rs.next()) {
-					int idGhe = rs.getInt(1);
-					String tenGhe = rs.getString(2);
-					int trangThai = rs.getInt(3);
-					int idPhong = rs.getInt(4);
-				 results.add( new  GhePhongChieu(idGhe, tenGhe, trangThai, idPhong));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return results;
-		
-		
-	}
+//	public List<GhePhongChieu> getByVe(int idVe)
+//	{
+//		List<GhePhongChieu> results = new ArrayList<>();
+//		String sql = "SELECT * FROM ghephongchieu g, chitietve ct WHERE g.idGhe = ct.idGhe && ct.idVe = ?";
+//		PreparedStatement statement = null;
+//			try {
+//				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+//				statement.setInt(1, idVe);
+//				ResultSet rs = statement.executeQuery();
+//				while (rs.next()) {
+//					int idGhe = rs.getInt(1);
+//					String tenGhe = rs.getString(2);
+//					int trangThai = rs.getInt(3);
+//					int idPhong = rs.getInt(4);
+//				 results.add( new  GhePhongChieu(idGhe, tenGhe, trangThai, idPhong));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return results;
+//		
+//		
+//	}
 	public List<GhePhongChieu> getByPhongChieu(int idPhong)
 	{
 		List<GhePhongChieu> results = new ArrayList<>();
@@ -121,5 +121,26 @@ public class GhePhongChieuDAO implements INewDAO<GhePhongChieu> {
 	}
 	return results;
 	}
-
+	public List<GhePhongChieu> getGheDaDatByLichChieu(int idLichChieu)
+	{
+		List<GhePhongChieu> results = new ArrayList<>();
+		String sql = "SELECT g.* FROM ghephongchieu g, chitietve ct, ve WHERE g.idGhe = ct.idGhe && ct.idVe = ve.idVe && ve.idLichChieu = ?";
+		PreparedStatement statement = null;
+		try {
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+			statement.setInt(1, idLichChieu);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				int idGhe = rs.getInt(1);
+				String tenGhe = rs.getString(2);
+				int trangThai = rs.getInt(3);
+				int idP = rs.getInt(4);
+			 results.add( new  GhePhongChieu(idGhe, tenGhe, trangThai, idP));
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+			return results;
+	}
 }
