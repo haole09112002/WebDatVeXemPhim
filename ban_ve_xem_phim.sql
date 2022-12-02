@@ -14,8 +14,8 @@
 
 
 -- Dumping database structure for rapchieuphim
-CREATE DATABASE IF NOT EXISTS `rapchieuphim` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `rapchieuphim`;
+CREATE DATABASE IF NOT EXISTS `phimhay` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `phimhay`;
 
 -- Dumping structure for table rapchieuphim.admin
 CREATE TABLE IF NOT EXISTS `admin` (

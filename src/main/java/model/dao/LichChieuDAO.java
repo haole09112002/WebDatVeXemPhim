@@ -133,13 +133,13 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		}
 		return results;
 	}
-	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idP, int idGio) {
-		String sql = "Select * from LichChieu where ngayChieu = ? and idPhim = ? && idGioChieu = ?";
+	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idPg, int idGio) {
+		String sql = "Select * from LichChieu where ngayChieu = ? and idPhong = ? && idGioChieu = ?";
 		PreparedStatement statement = null;
 			try {
 				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
 				statement.setDate(1, date);
-				statement.setInt(2, idP);
+				statement.setInt(2, idPg);
 				statement.setInt(3, idGio);
 				ResultSet rs = statement.executeQuery();
 				while (rs.next()) {

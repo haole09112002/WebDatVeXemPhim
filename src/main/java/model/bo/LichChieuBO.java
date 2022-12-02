@@ -2,6 +2,8 @@ package model.bo;
 
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import model.bean.LichChieu;
 
@@ -31,8 +33,25 @@ public class LichChieuBO {
 	public List<LichChieu> getLichChieuByNgayChieuIdPhim(Date date, int idP) {
 		return lichChieuDAO.getLichChieuByNgayChieuIdPhim(date, idP);
 	}
-	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idP, int idGio) {
-		return lichChieuDAO.getLichChieuByNgayIdPhimIdGio(date, idP, idGio);
+//	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idP, int idGio) {
+//		return lichChieuDAO.getLichChieuByNgayIdPhimIdGio(date, idP, idGio);
+//	}
+	public List<Date> getNgayChieu()
+	{
+		List<Date> results = new ArrayList<Date>();
+		long millis=System.currentTimeMillis();   
+		Date date=new Date(millis);
+		
+        for (int i = 1; i < 6; i++) {
+        	Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+        	  cal.add(Calendar.DATE, i);
+        	  results.add( new Date(cal.getTime().getTime()));
+		}
+        return results;
 	}
-
+	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idPhong, int idGio)
+	{
+		return lichChieuDAO.getLichChieuByNgayIdPhimIdGio(date, idPhong, idGio);
+	}
 }
