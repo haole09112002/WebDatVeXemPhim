@@ -54,4 +54,7 @@ public class LichChieuBO {
 	{
 		return lichChieuDAO.getLichChieuByNgayIdPhongIdGio(date, idPhong, idGio);
 	}
+	public List<LichChieu> getLichChieuByNgayChieuIdPhong(Date date, int idP) {
+		return lichChieuDAO.getLichChieuByNgayChieuIdPhong(date, idP);
+	}
 }

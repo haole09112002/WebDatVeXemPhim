@@ -62,5 +62,8 @@ public class PhimBO {
 		return phimDAO.getPhimByIdLichChieu(idLich);
 	}
 
-
+	public int delete(Phim p)
+	{
+		return phimDAO.delete(p);
+	}
 }

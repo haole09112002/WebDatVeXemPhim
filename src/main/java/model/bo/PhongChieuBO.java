@@ -20,4 +20,7 @@ public class PhongChieuBO {
 	{
 		return phongChieuDAO.get(id);
 	}
+	public List<PhongChieu> getAll() {
+		return phongChieuDAO.getAll();
+	}
 }

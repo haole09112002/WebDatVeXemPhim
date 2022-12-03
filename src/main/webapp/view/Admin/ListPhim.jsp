@@ -1,12 +1,16 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.Phim"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!-- Start header section -->
 <jsp:include page="header.jsp" flush="true" />
 
 <style>
-.body-container{
+.body-container {
 	margin-top: 60px;
 }
+
 h1 {
 	font-size: 30px;
 }
@@ -43,43 +47,39 @@ h1 {
 					<th class="cell">Cập nhật</th>
 					<th class="cell">Xóa</th>
 				</tr>
+				<%
+				List<Phim> phims = (ArrayList<Phim>) request.getAttribute("phims");
+				if (phims != null) {
+					for (Phim p : phims) {
+				%>
 				<tr class="active">
-					<td>1</td>
-					<td>Avenger:Ending</td>
-					<td><a href=”″>Xem chi tiết</a></td>
-					<td><a href=”″>Cập nhật</a></td>
-					<td><a href=”″>Xóa</a></td>
+					<td><%=p.getIdPhim()%></td>
+					<td><%=p.getTenPhim()%></td>
+					<td><a href="Admin?Xemchitiet:<%=p.getIdPhim()%>">Xem chi
+							tiết</a></td>
+					<td>
+						<form action="Admin" method="get">
+							<button type="submit" value="<%=p.getIdPhim()%>" name="capnhat">
+								<i class="fa fa-wrench" aria-hidden="true"></i>
+							</button>
+						</form>
+						</a>
+					</td>
+					<td><form action="Admin" method="post">
+							<button type="submit" value="<%=p.getIdPhim()%>" name="delete">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</button>
+						</form></td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>Gia đình phép thuật</td>
-					<td><a href=”″>Xem chi tiết</a></td>
-					<td><a href=”″>Cập nhật</a></td>
-					<td><a href=”″>Xóa</a></td>
-				</tr>
-				<tr class="active">
-					<td>3</td>
-					<td>Tom and jerry</td>
-					<td><a href=”″>Xem chi tiết</a></td>
-					<td><a href=”″>Cập nhật</a></td>
-					<td><a href=”″>Xóa</a></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Bất ngờ chưa ông già</td>
-					<td><a href=”″>Xem chi tiết</a></td>
-					<td><a href=”″>Cập nhật</a></td>
-					<td><a href=”″>Xóa</a></td>
-				</tr>
-				<tr class="active">
-					<td>5</td>
-					<td>Ôi thật bất ngờ</td>
-					<td><a href=”″>Xem chi tiết</a></td>
-					<td><a href=”″>Cập nhật</a></td>
-					<td><a href=”″>Xóa</a></td>
-				</tr>
+				<%
+				}
+				}
+				%>
 			</table>
-			<button class="btn btn-outline-secondary">Thêm phim</button>
+			<form action="Admin?Add:true" method="post">
+				<button class="btn btn-outline-secondary" type="submit">Thêm
+					phim</button>
+			</form>
 		</div>
 	</div>
 </div>
