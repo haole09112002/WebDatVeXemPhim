@@ -36,14 +36,15 @@ public class HomeController extends HttpServlet {
 		List<TheLoai> theLoais = theLoaiBO.getAll();
 		request.setAttribute("theloais", theLoais);
 		//load data
+		int idTheLoai = -1;
 		if(request.getParameter("idTheLoai") != null && request.getParameter("txtSearch") != null)
 		{	
-			int idTheLoai =Integer.parseInt(request.getParameter("idTheLoai"));
+			idTheLoai =Integer.parseInt(request.getParameter("idTheLoai"));
 			String txtSearch = request.getParameter("txtSearch");
 			phims = phimBO.getPhimByNameAndTheLoai(txtSearch, idTheLoai);
 		}
 		else if(request.getParameter("idTheLoai") != null) {
-			int idTheLoai =Integer.parseInt(request.getParameter("idTheLoai"));
+			idTheLoai =Integer.parseInt(request.getParameter("idTheLoai"));
 			phims = phimBO.getPhimByIdTheLoai(idTheLoai);
 		}
 		else if(request.getParameter("txtSearch") != null) {
@@ -59,12 +60,20 @@ public class HomeController extends HttpServlet {
 		{
 			int idPhim = Integer.parseInt(request.getParameter("idPhim"));
 			request.setAttribute("phim",phimBO.getPhimById(idPhim));
-			RequestDispatcher rd = request.getRequestDispatcher("/view/client/DatVe.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DetailMovie.jsp");
 	        rd.forward(request, response);
 		}
-		phims = phimBO.getAllPhim();
+		if(request.getParameter("idPhimDatVe") != null)
+		{
+			int idPhim = Integer.parseInt(request.getParameter("idPhimDatVe"));
+			request.setAttribute("phim",phimBO.getPhimById(idPhim));
+			RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DatVe.jsp");
+	        rd.forward(request, response);
+		}
 		request.setAttribute("phims", phims);
-		RequestDispatcher rd = request.getRequestDispatcher("/view/testview.jsp");
+		if(idTheLoai  != -1)
+			request.setAttribute("idTheLoai", idTheLoai);
+		RequestDispatcher rd = request.getRequestDispatcher("/view/Client/Home.jsp");
         rd.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -81,3 +90,4 @@ public class HomeController extends HttpServlet {
 		
 	}
 }
+

@@ -121,5 +121,28 @@ public class PhongChieuDAO implements INewDAO<PhongChieu> {
 		}
 		return null;
 	}
+	public List<PhongChieu> getPhongChieuByIdPhimNgay(int idPhim, Date ngay)
+	{
+		List<PhongChieu> results = new ArrayList<>();
+		String sql= "SELECT DISTINCT phongchieu.* FROM phongchieu"
+				+" INNER JOIN lichchieu ON lichchieu.idPhong = phongchieu.idPhong"
+				+ " WHERE lichchieu.ngaychieu = ? && lichchieu.idPhim = ?" ;
+		PreparedStatement statement = null;
+		try {
+			statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+			statement.setDate(1, ngay);
+			statement.setInt(2, idPhim);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+				int idPhong = rs.getInt(1);
+				String tenPhong = rs.getString(2);
+				int soGhe = rs.getInt(3);
+			 results.add(new PhongChieu(idPhong, tenPhong, soGhe));
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return results;
+	}
 
 }

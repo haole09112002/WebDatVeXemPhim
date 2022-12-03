@@ -1,13 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,127 +55,9 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		if (request.getSession(false) != null) {
-			if (request.getSession().getAttribute("idAdmin") != null) {
-				if (request.getQueryString() != null && request.getQueryString().equals("ListPhim") != true) {
-					if (request.getQueryString().split(":")[0].equals("Xemchitiet")) {
-						int idPhim = Integer.parseInt(request.getQueryString().split(":")[1]);
-						Phim p = phimBO.getPhimById(idPhim);
-						request.setAttribute("phim", p);
-						TheLoai tl = theLoaiBO.get(p.getIdTheLoai());
-						request.setAttribute("theloai", tl.getTenTheLoai());
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/InforPhim.jsp");
-						rd.forward(request, response);
-					} else if (request.getQueryString().split("=")[0].equals("capnhat")) {
-						int idPhim = Integer.parseInt(request.getQueryString().split("=")[1]);
-						Phim p = phimBO.getPhimById(idPhim);
-						List<TheLoai> listTL = theLoaiBO.getAll();
-						String tlPhim = theLoaiBO.get(p.getIdTheLoai()).getTenTheLoai();
-						if (p.getNgayKetThuc() == null) {
-							p.setNgayKetThuc(Date.valueOf("2000-01-01"));
-						}
-						if (p.getNgayKhoiChieu() == null) {
-							p.setNgayKhoiChieu(Date.valueOf("2000-01-01"));
-						}
-						request.setAttribute("phim", p);
-						request.setAttribute("listtheloai", listTL);
-						request.setAttribute("theloai", tlPhim);
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/UpdateMovie.jsp");
-						rd.forward(request, response);
-					} else if (request.getQueryString().split(":")[0].equals("Add")
-							|| request.getAttribute("addfail") != null) {
-						List<TheLoai> listTL = theLoaiBO.getAll();
-						request.setAttribute("listtheloai", listTL);
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/CreateMovie.jsp");
-						rd.forward(request, response);
-					} else if (request.getParameter("LichChieu") != null) {
-						List<PhongChieu> listPC = phongChieuBO.getAll();
-						request.setAttribute("listphongchieu", listPC);
-						if (request.getParameter("chonngay") != null && request.getParameter("tenphong") != null) {
-							int idPhong = Integer.parseInt(request.getParameter("tenphong"));
-							Date chonNgay = Date.valueOf(request.getParameter("chonngay"));
-							List<LichChieu> listLichChieu = lichChieuBO.getLichChieuByNgayChieuIdPhong(chonNgay,
-									idPhong);
-							List<String> tenPhimSearch = new ArrayList<String>();
-							List<LichChieuDetail> listLichChieuDetail = new ArrayList<LichChieuDetail>();
-							for (LichChieu i : listLichChieu) {
-								LichChieuDetail lCD = new LichChieuDetail(i.getIdLichChieu(), i.getIdPhim(),
-										phimBO.getPhimById(i.getIdPhim()).getTenPhim(), i.getIdPhong(),
-										phongChieuBO.get(i.getIdPhong()).getTenPhong(), i.getNgayChieu(),
-										i.getIdGioChieu(), gioChieuBO.get(i.getIdGioChieu()).getGioChieu(),
-										i.getGiaVe());
-								listLichChieuDetail.add(lCD);
-								tenPhimSearch.add(phimBO.getPhimById(i.getIdPhim()).getTenPhim());
-							}
-							List<String> listTenPhimSearch = tenPhimSearch
-					                .stream()
-					                .distinct() 
-					                .collect(Collectors.toList());
-							request.setAttribute("listTenPhimSearch", listTenPhimSearch);
-							request.setAttribute("listlichchieudetail", listLichChieuDetail);
-						}
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/ScheduleMovie.jsp");
-						rd.forward(request, response);
-					}  else if(request.getParameter("TaoLichChieu") != null)
-					{
-						List<Phim> phims = phimBO.getAllPhim();
-						List<PhongChieu> phongChieus = phongChieuBO.getAll();
-						List<GioChieu> gioChieus = gioChieuBO.getAll();
-						request.setAttribute("phims", phims);
-						request.setAttribute("phongchieus", phongChieus);
-						request.setAttribute("giochieus", gioChieus);
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/CreateScheduleMovie.jsp");
-						rd.forward(request, response);
-						
-					}	else if(request.getParameter("DanhSachVe") != null || request.getQueryString().split("=")[0].equals("DanhSachVeTimKiem")) {
-						List<ChiTietVe> chiTietVes = chiTietVeBO.getAll();
-						List<VeDetail> veDetails = new ArrayList<VeDetail>();
-						for(ChiTietVe i : chiTietVes) {
-							String tenPhong = phongChieuBO.get(lichChieuBO.get(veBO.get(i.getIdVe()).getIdLichChieu()).getIdPhong()).getTenPhong();
-							Date ngayChieu = lichChieuBO.get(veBO.get(i.getIdVe()).getIdLichChieu()).getNgayChieu();
-							Time thoiGianChieu = gioChieuBO.get(lichChieuBO.get(veBO.get(i.getIdVe()).getIdLichChieu()).getIdGioChieu()).getGioChieu();
-							String tenGhe = gheBO.get(i.getIdGhe()).getTenGhe();
-							String soDienThoai = veBO.get(i.getIdVe()).getSoDienThoai();
-							VeDetail ve = new VeDetail(i.getIdVe(),veBO.get(i.getIdVe()).getTenKhach(),veBO.get(i.getIdVe()).getSoDienThoai() ,tenPhong , thoiGianChieu, ngayChieu,tenGhe);
-							if(request.getParameter("DanhSachVeTimKiem") != null)
-							{
-								if(request.getParameter("DanhSachVeTimKiem").equals("search"))
-								{
-									if(request.getParameter("sodienthoai") != null)
-									{
-										if(soDienThoai.equals(request.getParameter("sodienthoai"))) {
-											veDetails.add(ve);
-										}
-									}
-								}else {
-									veDetails.add(ve);
-								}
-							}
-							else {
-								veDetails.add(ve);
-							}
-						}
-						request.setAttribute("vedetails", veDetails);
-						RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/ListVe.jsp");
-						rd.forward(request, response);
-					}
-				} else {
-					List<Phim> phims = phimBO.getAllPhim();
-					request.setAttribute("phims", phims);
-					RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/ListPhim.jsp");
-					rd.forward(request, response);
-				}
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/Login.jsp");
-				rd.forward(request, response);
-			}
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/Login.jsp");
-			rd.forward(request, response);
-		}
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

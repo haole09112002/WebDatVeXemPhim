@@ -8,10 +8,10 @@ import model.dao.GhePhongChieuDAO;
 public class GheBO {
 	private GhePhongChieuDAO gheDAO = new GhePhongChieuDAO();
 	
-	public List<GhePhongChieu> getGheByIdVe(int idVe)
-	{
-		return gheDAO.getByVe(idVe);
-	}
+//	public List<GhePhongChieu> getGheByIdVe(int idVe)
+//	{
+//		return gheDAO.getByVe(idVe);
+//	}
 	public List<GhePhongChieu> getGheByIdPhongChieu(int idPC)
 	{
 		return gheDAO.getByPhongChieu(idPC);
@@ -28,8 +28,8 @@ public class GheBO {
 	{
 		return gheDAO.get(id);
 	}
-	public Boolean gheDaChon(int idGhe)
+	public List<GhePhongChieu> getGheDaDatByLichChieu(int idLichChieu)
 	{
-		return gheDAO.get(idGhe).getTrangThai() > 0 ? true : false;
+		return gheDAO.getGheDaDatByLichChieu(idLichChieu);
 	}
 }
