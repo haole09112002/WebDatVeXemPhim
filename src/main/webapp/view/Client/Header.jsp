@@ -45,8 +45,7 @@ pageEncoding="ISO-8859-1"%>
         <a class="navbar-brand position-relative hover-a" href="">HOME</a>
         <a class="navbar-brand position-relative hover-a" href="">BUY TICKETS</a>
         </div>
-        <a class="navbar-brand position-relative hover-a" href="">
-        <i class="ti-user font-weight-bold "></i>
+        <a class="navbar-brand position-relative hover-a" href="Login">
         </a>
         </nav>
   </div>
