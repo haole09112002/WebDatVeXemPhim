@@ -27,4 +27,8 @@ public class VeBO {
 	{
 		return veDAO.add(v);
 	}
+	public int getNewIdve()
+	{
+		return veDAO.getNewIdve();
+	}
 }

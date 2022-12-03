@@ -102,5 +102,21 @@ public class VeDAO implements INewDAO<Ve> {
 		}
 		return results;
 	}
-
+	public int getNewIdve()
+	{
+		String sql = " MAX(ve.idVe) FROM ve";
+		PreparedStatement statement = null;
+		try {
+				statement = DBHelper.getInstance().getConnection().prepareStatement(sql);
+				ResultSet rs = statement.executeQuery();
+				while (rs.next()) {
+					int idVe = rs.getInt(1);
+				
+					return idVe;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

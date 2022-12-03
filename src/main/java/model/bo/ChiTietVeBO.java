@@ -22,5 +22,9 @@ public class ChiTietVeBO {
 //	{
 //		return chiTietVeDAO.getByIdVe(idVe);
 //	}
+	public int add(ChiTietVe t)
+	{
+		return chiTietVeDAO.add(t);
+	}
 
 }

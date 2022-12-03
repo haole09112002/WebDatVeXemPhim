@@ -63,6 +63,13 @@ public class HomeController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DetailMovie.jsp");
 	        rd.forward(request, response);
 		}
+		if(request.getParameter("idPhimDatVe") != null)
+		{
+			int idPhim = Integer.parseInt(request.getParameter("idPhimDatVe"));
+			request.setAttribute("phim",phimBO.getPhimById(idPhim));
+			RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DatVe.jsp");
+	        rd.forward(request, response);
+		}
 		request.setAttribute("phims", phims);
 		if(idTheLoai  != -1)
 			request.setAttribute("idTheLoai", idTheLoai);
@@ -83,3 +90,4 @@ public class HomeController extends HttpServlet {
 		
 	}
 }
+

@@ -1,5 +1,6 @@
-<%@page language="java" contentType="text/html; charset=utf-8"
-pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@page language="java" import="java.util.ArrayList" %>
+<%@page language="java" import="model.bean.Phim" %>
 <!-- Start header section -->
 <jsp:include page="Header.jsp" flush="true" />
 <style>
@@ -7,102 +8,117 @@ pageEncoding="UTF-8"%>
     box-sizing: border-box;
   }
 
-  .body-container {
+
+
+ .body-container {
     margin-top: 60px;
   }
 
-  .description-container {
+
+
+ .description-container {
     position: relative;
     height: 80%;
   }
 
 
 
-  .main-description h3 {
+
+
+ .main-description h3 {
     font-size: 2rem;
   }
 
-  .add-inputs,
+
+
+ .add-inputs,
   .add-inputs input {
     float: left;
     margin-right: 10px;
     margin-bottom: 2px;
   }
 
-  .add-inputs button {
+
+
+ .add-inputs button {
     border-radius: 0;
   }
 
-  .add-inputs input {
+
+
+ .add-inputs input {
     height: 48px;
     width: 65px;
     border-radius: 0;
   }
 
-  .movie-title {
+
+
+ .movie-title {
     font-size: 1.1rem;
     font-weight: bold;
   }
 
-  .movie-price {
+
+
+ .movie-price {
     font-size: 1.8rem;
   }
 </style>
 
+
+
 <div class="container body-container">
+<%
+    Phim phim = (Phim)request.getAttribute("phim");
+%>
   <div class="row">
     <div class="col-md-6 col-sm-12">
       <img
         class="img-fluid details-img"
-        src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NDQ4ODI4/marveldisney.jpg"
+        src="<%= phim.getLinkAnh() %>"
         alt="img"
         style=" width:100%;
         height: 300px;
         object-fit: fill;"
       />
-      <iframe  height="300" src="https://www.youtube.com/embed/TcMBFSGVi1c" title="HTTP Status 404 - /sample/servlet/Sample:The requested resource is not available." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  style="width:100%; margin: 17px 0px;"allowfullscreen></iframe>
+      <iframe  height="300" src="https://www.youtube.com/embed/<%= phim.getLinkTrailer() %>" title="HTTP Status 404 - /sample/servlet/Sample:The requested resource is not available." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"  style="width:100%; margin: 17px 0px;"allowfullscreen></iframe>
     </div>
     <div class="col-md-6 col-sm-12 description-container">
       <div class="main-description">
-        <h3>Tên Phim : Avengers: Endgame</h3>
-        <p class="movie-price">Giá vé: $19</p>
+        <h3>Tên Phim : <%= phim.getTenPhim() %></h3>
+        <p class="movie-price">Giá vé: 19$</p>
 
-        <p class="movie-title mt-4 mb-1">Mô Tả</p>
+
+
+       <p class="movie-title mt-4 mb-1">Mô Tả</p>
         <p class="movie-description mb-4">
-          Avengers: Hồi kết (tựa gốc tiếng Anh: Avengers: Endgame) là phim điện
-          ảnh siêu anh hùng Mỹ ra mắt năm 2019, do Marvel Studios sản xuất và
-          Walt Disney Studios Motion Pictures phân phối độc quyền tại thị trường
-          Bắc Mỹ. Phim là phần thứ tư của loạt phim Avengers, sau Biệt đội siêu
-          anh hùng (2012), Avengers: Đế chế Ultron (2015) và Avengers: Cuộc
-          chiến vô cực (2018), đồng thời cũng là phim điện ảnh thứ 22 của Vũ trụ
-          Điện ảnh Marvel (MCU).
+          <%= phim.getMoTa() %>
         </p>
         <div class="d-flex justify-content-between">
-                <p class="movie-thoi-luong d-inline-block">Thời lượng : 90 phút</p>
-                <p class="movie-the-loai d-inline-block">Thể loại : Siêu anh hùng</p>
+                <p class="movie-thoi-luong d-inline-block">Thời lượng : <%= phim.getThoiLuong() %> phút</p>
+                <p class="movie-the-loai d-inline-block">Thể loại : <%= phim.getIdTheLoai() %></p>
         </div>
         <div class="d-flex justify-content-between">
-            <p class="movie-dao-dien d-inline-block">Đạo diễn : Anthony Russo, Joe Russo</p>
-            <p class="movie-do-tuoi d-inline-block">Độ tuổi : 20 tuổi</p>
+            <p class="movie-dao-dien d-inline-block">Đạo diễn : <%= phim.getDaoDien() %></p>
+            <p class="movie-do-tuoi d-inline-block">Độ tuổi : <%= phim.getDoTuoi() %> tuổi</p>
         </div>
         <div class="d-flex justify-content-between">
             <p class="movie-ngay-khoi-chieu d-inline-block">
-                Ngày khởi chiếu : 22 tháng 4 năm 2019
+                Ngày khởi chiếu : <%= phim.getNgayKhoiChieu() %>
               </p>
-            <p class="movie-quoc-gia d-inline-block">Quốc gia : Mỹ</p>
+            <p class="movie-quoc-gia d-inline-block">Quốc gia : <%= phim.getQuocGia() %></p>
          </div>
         <p class="movie-dien-vien">
-          Diễn viên : Robert Downey Jr. Chris Evans Mark Ruffalo Chris Hemsworth
-          Scarlett Johansson Jeremy Renner Don Cheadle Paul Rudd Brie Larson
-          Karen Gillan Danai Gurira Benedict Wong Jon Favreau Bradley Cooper
-          Gwyneth Paltrow Chadwick Boseman Letitia Wright Josh Brolin
+          Diễn viên : <%= phim.getDienVien() %>
         </p>
         <div class="mt-3 d-flex justify-content-center">
-            <form class="add-inputs" method="post">
+            <form class="add-inputs" method="get">
               <button
                 name="add_to_cart"
                 type="submit"
                 class="btn btn-primary btn-lg"
+                value = "<%-- <%= phim.get(0).getIdPhim() %> --%>"
               >
                 MUA VÉ
               </button>
