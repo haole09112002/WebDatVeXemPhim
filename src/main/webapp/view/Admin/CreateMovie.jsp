@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.TheLoai"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!-- Start header section -->
@@ -10,7 +13,7 @@
 </style>
 
 <div class="container body-add-movie">
-	<form>
+	<form action="Admin" method="post">
 		<h2>Form add movie</h2>
 		<div class="row">
 			<div class="col-md-6">
@@ -68,8 +71,8 @@
 				<label for="fecha1">Ngày khởi chiếu</label>
 				<div class="form-group mb-4">
 					<div class="datepicker date input-group">
-						<input type="text" placeholder="Choose Date" class="form-control"
-							id="fecha1" name="ngaykhoichieu">
+						<input type="text" class="form-control"
+							id="fecha1" name="ngaykhoichieu" value="2000-01-01">
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 						</div>
@@ -95,8 +98,8 @@
 				<label for="fecha1">Ngày kết thúc</label>
 				<div class="form-group mb-4">
 					<div class="datepicker date input-group">
-						<input type="text" placeholder="Choose Date" class="form-control"
-							id="fecha1" name="ngayketthuc">
+						<input type="text" class="form-control"
+							id="fecha1" name="ngayketthuc" value="2000-01-01">
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 						</div>
@@ -119,25 +122,31 @@
 			<!--  col-md-6   -->
 
 			<div class="col-md-6">
-
+				<%
+				List<TheLoai> listTL = (ArrayList<TheLoai>) request.getAttribute("listtheloai");
+				TheLoai fist = listTL.get(1);
+				listTL.remove(1);
+				%>
 				<div class="form-group">
 					<h6>Thể loại</h6>
 					<select class="custom-select" id="gender2" name="theloai">
-						<option selected>Choose...</option>
-						<option value="1">Male</option>
-						<option value="2">Female</option>
+						<option selected value="<%= fist.getIdTheLoai() %>"><%= fist.getTenTheLoai() %></option>
+						<% for(TheLoai i : listTL){ %>
+						<option value="<%= i.getIdTheLoai() %>"><%= i.getTenTheLoai() %></option>
+						<%} %>
 					</select>
 				</div>
 			</div>
 			<!--  col-md-6   -->
 		</div>
 		<!--  row   -->
-		
+
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="company1">Diễn viên</label> <textarea type="text"
-						class="form-control" placeholder="" id="company1" name="dienvien"></textarea>
+					<label for="company1">Diễn viên</label>
+					<textarea type="text" class="form-control" placeholder=""
+						id="company1" name="dienvien"></textarea>
 				</div>
 
 
@@ -147,15 +156,16 @@
 			<div class="col-md-6">
 
 				<div class="form-group">
-					<label for="company2">Mô tả phim</label> <textarea type="text"
-						class="form-control" placeholder="" id="company2" name="dienvien"></textarea>
+					<label for="company2">Mô tả phim</label>
+					<textarea type="text" class="form-control" placeholder=""
+						id="company2" name="motaphim"></textarea>
 				</div>
 			</div>
 			<!--  col-md-6   -->
 		</div>
 		<!--  row   -->
 
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary" name="add" value="1">Submit</button>
 	</form>
 </div>
 
@@ -180,7 +190,7 @@
 		$('.datepicker').datepicker({
 			language : "es",
 			autoclose : true,
-			format : "dd/mm/yyyy"
+			format : "yyyy-mm-dd"
 		});
 	});
 </script>

@@ -8,19 +8,19 @@ import model.dao.ChiTietVeDAO;
 public class ChiTietVeBO {
 	private ChiTietVeDAO chiTietVeDAO = new ChiTietVeDAO();
 	
-//	public List<ChiTietVe> getAll()
-//	{
-//		return chiTietVeDAO.getAll();
-//	}
-//	
-//	public ChiTietVe getByKey( int idVe , int idGhe)
-//	{
-//		return chiTietVeDAO.getByIdId(idVe, idGhe);
-//	}
-//	
-//	public List<ChiTietVe> getByidVe(int idVe)
-//	{
-//		return chiTietVeDAO.getByIdVe(idVe);
-//	}
+	public List<ChiTietVe> getAll()
+	{
+		return chiTietVeDAO.getAll();
+	}
+	
+	public ChiTietVe getByKey( int idVe , int idGhe)
+	{
+		return chiTietVeDAO.getByIdId(idVe, idGhe);
+	}
+	
+	public List<ChiTietVe> getByidVe(int idVe)
+	{
+		return chiTietVeDAO.getByIdVe(idVe);
+	}
 
 }

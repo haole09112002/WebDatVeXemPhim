@@ -1,3 +1,9 @@
+<%@page import="model.dao.LichChieuDAO"%>
+<%@page import="model.bean.LichChieuDetail"%>
+<%@page import="model.bean.LichChieu"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.PhongChieu"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!-- Start header section -->
@@ -112,16 +118,24 @@ h2 {
 		<div class="form-group">
 			<label for="coloreVariante" class="col-xs-12 control-label">select
 				room</label>
-			<form>
+			<form method="get" action="Admin">
 				<div class="col-xs-12 ">
 					<select data-selectprod-id="138"
-						class="form-control selectprodvariants  " name="coloreVariante[]">
-						<option selected="" value="">...</option>
-						<option value="199">Descrizione variante</option>
-						<option value="201">adasd</option>
-						<option value="212">blu</option>
-						<option value="213">verde</option>
-						<option value="214">viola</option>
+						class="form-control selectprodvariants " name="tenphong">
+						<%
+						List<PhongChieu> listPC = (ArrayList<PhongChieu>) request.getAttribute("listphongchieu");
+						PhongChieu pcfist = listPC.get(1);
+						listPC.remove(1);
+						%>
+						<option selected value="<%=pcfist.getIdPhong()%>"><%=pcfist.getTenPhong()%></option>
+						<%
+						for (PhongChieu i : listPC) {
+						%>
+						<option value="<%=i.getIdPhong()%>"><%=i.getTenPhong()%>
+						</option>
+						<%
+						}
+						%>
 					</select>
 					<div class="clearfix"></div>
 				</div>
@@ -135,8 +149,8 @@ h2 {
 			<!-- Date Picker -->
 			<div class="form-group mb-4">
 				<div class="datepicker date input-group">
-					<input type="text" placeholder="Choose Date" class="form-control"
-						id="fecha1">
+					<input type="text" name="chonngay" value="2022-11-30"
+						class="form-control" id="fecha1">
 					<div class="input-group-append">
 						<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 					</div>
@@ -165,55 +179,39 @@ h2 {
 
 		<div class="col-xs-12">
 			<hr>
-			<button type="button" class="btn btn-primary btn-duplicate">Show</button>
+			<button type="submit" class="btn btn-primary btn-duplicate"
+				name="LichChieu" value="Show">Show</button>
 		</div>
 		</form>
 	</div>
 </div>
+<%
+if (request.getAttribute("listlichchieudetail") != null) {
+	List<LichChieuDetail> listLichChieu = (ArrayList<LichChieuDetail>) request.getAttribute("listlichchieudetail");
+%>
 <div class="body-schedule-movie">
 	<ol class="ol-schedule-movie">
+		<%
+		List<String> listTenPhim = (ArrayList<String>) request.getAttribute("listTenPhimSearch");
+		for (String i : listTenPhim) {
+		%>
 		<li>
-			<h2>Les animaux fantastiques</h2>
-			<p>15:30</p>
-			<p>18:45</p>
-		</li>
-		<li>
-			<h2>Coming Out</h2>
-			<p>15:00</p>
-			<p>17:30</p>
-			<p>20:00</p>
-		</li>
-		<li>
-			<h2>Docteur Strange</h2>
-			<p>20:00</p>
-		</li>
-		<li>
-			<h2>Spiderman Multiverse</h2>
-			<p>18:45</p>
-			<p>22:15</p>
-		</li>
-		<li>
-			<h2>The ledge</h2>
-			<p>19:45</p>
-			<p>22:30</p>
-		</li>
-		<li>
-			<h2>Miss Marx</h2>
-			<p>15:00</p>
-		</li>
-		<li>
-			<h2>Movie Title</h2>
-			<p>15:30</p>
+			<h2><%=i%>
+			</h2> <%
+ for (LichChieuDetail j : listLichChieu) {
+ 	if (j.getTenPhim().equals(i)) {
+ %>
+			<p><%=j.getGioChieu().toString()%></p> <%}}}}
+ %>
 		</li>
 	</ol>
 </div>
-
 <script>
 	$(function() {
 		$('.datepicker').datepicker({
 			language : "es",
 			autoclose : true,
-			format : "dd/mm/yyyy"
+			format : "yyyy-mm-dd"
 		});
 	});
 </script>

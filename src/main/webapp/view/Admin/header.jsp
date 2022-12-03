@@ -35,11 +35,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="./ListPhim.jsp">Movie<span
-						class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="./ScheduleMovie.jsp">Showtimes</a>
+				<li class="nav-item"><a class="nav-link" href="Admin?ListPhim">Phim</a></li>
+				<li class="nav-item"><a class="nav-link" href="Admin?LichChieu">Lich chieu</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="./CreateScheduleMovie.jsp">Create Showtimes</a>
+				<li class="nav-item"><a class="nav-link" href="Admin?TaoLichChieu">Tao lich chieu</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="Admin?DanhSachVe">Danh sach ve</a>
 				</li>
 			</ul>
 		</div>

@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.TheLoai"%>
+<%@page import="model.bean.Phim"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!-- Start header section -->
@@ -10,13 +14,17 @@
 </style>
 
 <div class="container body-add-movie">
-	<form>
+	<form action="Admin" method="post">
+		<%
+		Phim p = (Phim) request.getAttribute("phim");
+		%>
 		<h2>Form update movie</h2>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="first">Tên phim</label> <input type="text"
-						class="form-control" placeholder="" id="first" name="tenphim">
+						class="form-control" placeholder="" id="first" name="tenphim"
+						value=<%=p.getTenPhim()%> disabled>
 				</div>
 			</div>
 			<!--  col-md-6   -->
@@ -24,7 +32,8 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="last">Thời lượng</label> <input type="text"
-						class="form-control" placeholder="" id="last" name="thơiluong">
+						class="form-control" placeholder="" id="last" name="thơiluong"
+						value=<%=p.getThoiLuong()%>>
 				</div>
 			</div>
 			<!--  col-md-6   -->
@@ -35,7 +44,8 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="company">Nhà sản xuất</label> <input type="text"
-						class="form-control" placeholder="" id="company" name="nhasanxuat">
+						class="form-control" placeholder="" id="company" name="nhasanxuat"
+						value=<%=p.getNhaSanXuat()%> disabled>
 				</div>
 
 
@@ -46,7 +56,8 @@
 
 				<div class="form-group">
 					<label for="phone">Độ tuổi</label> <input type="tel"
-						class="form-control" id="phone" placeholder="" name="dotuoi">
+						class="form-control" id="phone" placeholder="" name="dotuoi"
+						value=<%=p.getDoTuoi()%>>
 				</div>
 			</div>
 			<!--  col-md-6   -->
@@ -59,7 +70,8 @@
 
 				<div class="form-group">
 					<label for="email">Đạo diễn</label> <input type="text"
-						class="form-control" id="email" placeholder="" name="daodien">
+						class="form-control" id="email" placeholder="" name="daodien"
+						value=<%=p.getDaoDien()%> disabled>
 				</div>
 			</div>
 			<!--  col-md-6   -->
@@ -69,7 +81,8 @@
 				<div class="form-group mb-4">
 					<div class="datepicker date input-group">
 						<input type="text" placeholder="Choose Date" class="form-control"
-							id="fecha1" name="ngaykhoichieu">
+							id="fecha1" name="ngaykhoichieu"
+							value=<%=p.getNgayKhoiChieu().toString()%>>
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 						</div>
@@ -86,7 +99,8 @@
 
 				<div class="form-group">
 					<label for="email">Link trailer</label> <input type="text"
-						class="form-control" id="email" placeholder="" name="linktrailer">
+						class="form-control" id="email" placeholder="" name="linktrailer"
+						value=<%=p.getLinkTrailer()%>>
 				</div>
 			</div>
 			<!--  col-md-6   -->
@@ -96,7 +110,8 @@
 				<div class="form-group mb-4">
 					<div class="datepicker date input-group">
 						<input type="text" placeholder="Choose Date" class="form-control"
-							id="fecha1" name="ngayketthuc">
+							id="fecha1" name="ngayketthuc"
+							value=<%=p.getNgayKetThuc().toString()%>>
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 						</div>
@@ -111,7 +126,8 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label for="company">Link Ảnh</label> <input type="text"
-						class="form-control" placeholder="" id="company" name="linkanh">
+						class="form-control" placeholder="" id="company" name="linkanh"
+						value=<%=p.getLinkAnh()%>>
 				</div>
 
 
@@ -119,25 +135,43 @@
 			<!--  col-md-6   -->
 
 			<div class="col-md-6">
-
 				<div class="form-group">
 					<h6>Thể loại</h6>
 					<select class="custom-select" id="gender2" name="theloai">
-						<option selected>Choose...</option>
-						<option value="1">Male</option>
-						<option value="2">Female</option>
+						<%
+						String tlPhim = (String) request.getAttribute("theloai");
+						int idTLP = 1;
+						List<TheLoai> listTL = (ArrayList<TheLoai>) request.getAttribute("listtheloai");
+						for(TheLoai i : listTL){
+							if(i.getTenTheLoai().equals(tlPhim)){
+								idTLP = i.getIdTheLoai();
+							}
+						}
+						%>
+						
+						<option selected value="<%= idTLP %>"><%=tlPhim%></option>
+						<%
+						if (listTL != null) {
+							for (TheLoai i : listTL) {
+						%>
+						<option value="<%=i.getIdTheLoai()%>"><%=i.getTenTheLoai()%></option>
+						<%
+						}
+						}
+						%>
 					</select>
 				</div>
 			</div>
 			<!--  col-md-6   -->
 		</div>
 		<!--  row   -->
-		
+
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
-					<label for="company1">Diễn viên</label> <textarea type="text"
-						class="form-control" placeholder="" id="company1" name="dienvien"></textarea>
+					<label for="company1">Diễn viên</label>
+					<textarea type="text" class="form-control" placeholder=""
+						id="company1" name="dienvien"><%= p.getDienVien()%></textarea>
 				</div>
 
 
@@ -147,15 +181,16 @@
 			<div class="col-md-6">
 
 				<div class="form-group">
-					<label for="company2">Mô tả phim</label> <textarea type="text"
-						class="form-control" placeholder="" id="company2" name="dienvien"></textarea>
+					<label for="company2">Mô tả phim</label>
+					<textarea type="text" class="form-control" placeholder=""
+						id="company2" name="motaphim"><%= p.getMoTa() %></textarea>
 				</div>
 			</div>
 			<!--  col-md-6   -->
 		</div>
 		<!--  row   -->
 
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary" name="update" value ="<%= p.getIdPhim()%>">Cập nhật</button>
 	</form>
 </div>
 
@@ -180,7 +215,7 @@
 		$('.datepicker').datepicker({
 			language : "es",
 			autoclose : true,
-			format : "dd/mm/yyyy"
+			format : "yyyy-mm-dd"
 		});
 	});
 </script>

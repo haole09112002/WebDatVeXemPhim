@@ -1,3 +1,4 @@
+<%@page import="model.bean.Phim"%>
 <%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="UTF-8"%>
 <!-- Start header section -->
@@ -55,47 +56,58 @@
 </style>
 
 <div class="container body-container">
-
+	<%
+	Phim p = (Phim) request.getAttribute("phim");
+	String theLoaiPhim = (String) request.getAttribute("theloai");
+	%>
 	<div class="row">
 
 		<div class="col-md-6 col-sm-12">
-			<img class="img-fluid details-img"
-				src="https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjkxNjk3NDQ4ODI4/marveldisney.jpg"
-				alt="img">
+			<img class="img-fluid details-img" width="450" height="498"
+				src="<%=p.getLinkAnh()%>" alt="Ảnh phim: <%=p.getTenPhim()%>"
+				style="margin-bottom: 20px">
 			<div class="mt-3 d-flex justify-content-center">
-			<form class="add-inputs" method="post">
-				<button name="add_to_cart" type="submit"
-					class="btn btn-primary btn-lg">BACK</button>
-			</form>
+				<form class="add-inputs" method="post" action="Admin">
+					<button type="submit" class="btn btn-primary btn-lg">BACK</button>
+				</form>
 			</div>
 		</div>
 		<div class="col-md-6 col-sm-12 description-container">
 			<div class="main-description">
-				<h3>Name : Avengers: Endgame</h3>
-				<p class="movie-price">Price : $1199.00</p>
+				<h3>
+					Tên phim
+					<%=p.getTenPhim()%></h3>
 
-				<p class="movie-title mt-4 mb-1">About this movie</p>
-				<p class="movie-description mb-4">Avengers: Hồi kết (tựa gốc
-					tiếng Anh: Avengers: Endgame) là phim điện ảnh siêu anh hùng Mỹ ra
-					mắt năm 2019, do Marvel Studios sản xuất và Walt Disney Studios
-					Motion Pictures phân phối độc quyền tại thị trường Bắc Mỹ. Phim là
-					phần thứ tư của loạt phim Avengers, sau Biệt đội siêu anh hùng
-					(2012), Avengers: Đế chế Ultron (2015) và Avengers: Cuộc chiến vô
-					cực (2018), đồng thời cũng là phim điện ảnh thứ 22 của Vũ trụ Điện
-					ảnh Marvel (MCU).</p>
-				<p class="movie-thoi-luong">Thời lượng : 90 phút</p>
-				<p class="movie-quoc-gia">Quốc gia : Mỹ</p>
-				<p class="movie-do-tuoi">Độ tuổi : 20 tuổi</p>
-				<p class="movie-dao-dien">Đạo diễn : Anthony Russo, Joe Russo</p>
-				<p class="movie-ngay-khoi-chieu">Ngày khởi chiếu : 22 tháng 4
-					năm 2019</p>
-				<p class="movie-link-trailer">Link trailer : TcMBFSGVi1c</p>
-				<p class="movie-dien-vien">Diễn viên : Robert Downey Jr. Chris
-					Evans Mark Ruffalo Chris Hemsworth Scarlett Johansson Jeremy Renner
-					Don Cheadle Paul Rudd Brie Larson Karen Gillan Danai Gurira
-					Benedict Wong Jon Favreau Bradley Cooper Gwyneth Paltrow Chadwick
-					Boseman Letitia Wright Josh Brolin</p>
-				<p class="movie-the-loai">Thể loại : Siêu anh hùng</p>
+				<p class="movie-title mt-4 mb-1">Mô tả phim:</p>
+				<p class="movie-description mb-4"><%=p.getMoTa()%></p>
+				<p class="movie-thoi-luong">
+					Thời lượng :
+					<%=p.getThoiLuong()%></p>
+				<p class="movie-quoc-gia">
+					Quốc gia :
+					<%=p.getQuocGia()%></p>
+				<p class="movie-do-tuoi">
+					Độ tuổi :
+					<%=p.getDoTuoi()%>
+					tuổi
+				</p>
+				<p class="movie-dao-dien">
+					Đạo diễn :
+					<%=p.getDaoDien()%></p>
+				<p class="movie-ngay-khoi-chieu">
+					Ngày khởi chiếu :
+					<%=p.getNgayKhoiChieu()%></p>
+				<p class="movie-dien-vien">
+					Diễn viên :
+					<%=p.getDienVien()%></p>
+				<p class="movie-the-loai">
+					Thể loại :
+					<%=theLoaiPhim%></p>
+				<iframe width="465" height="300"
+					src="https://www.youtube.com/embed/<%=p.getLinkTrailer()%>"
+					title="Trailer phim <%=p.getTenPhim()%>" frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
 				<div style="clear: both"></div>
 
 			</div>
