@@ -50,8 +50,8 @@ public class LichChieuBO {
 		}
         return results;
 	}
-	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idPhong, int idGio)
+	public LichChieu getLichChieuByNgayIdPhongIdGio(Date date, int idPhong, int idGio)
 	{
-		return lichChieuDAO.getLichChieuByNgayIdPhimIdGio(date, idPhong, idGio);
+		return lichChieuDAO.getLichChieuByNgayIdPhongIdGio(date, idPhong, idGio);
 	}
 }

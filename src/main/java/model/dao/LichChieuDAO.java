@@ -133,7 +133,7 @@ public class LichChieuDAO implements INewDAO<LichChieu>{
 		}
 		return results;
 	}
-	public LichChieu getLichChieuByNgayIdPhimIdGio(Date date, int idPg, int idGio) {
+	public LichChieu getLichChieuByNgayIdPhongIdGio(Date date, int idPg, int idGio) {
 		String sql = "Select * from LichChieu where ngayChieu = ? and idPhong = ? && idGioChieu = ?";
 		PreparedStatement statement = null;
 			try {
