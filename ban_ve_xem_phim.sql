@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `chitietve` (
   CONSTRAINT `FK_CTVe_ghe` FOREIGN KEY (`idGhe`) REFERENCES `ghephongchieu` (`idGhe`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.chitietve: ~9 rows (approximately)
+-- Dumping data for table rapchieuphim.chitietve: ~12 rows (approximately)
 /*!40000 ALTER TABLE `chitietve` DISABLE KEYS */;
 INSERT INTO `chitietve` (`idVe`, `idGhe`) VALUES
 	(1, 1),
@@ -54,7 +54,10 @@ INSERT INTO `chitietve` (`idVe`, `idGhe`) VALUES
 	(2, 15),
 	(3, 21),
 	(3, 22),
-	(3, 23);
+	(3, 23),
+	(4, 7),
+	(4, 16),
+	(4, 28);
 /*!40000 ALTER TABLE `chitietve` ENABLE KEYS */;
 
 -- Dumping structure for table rapchieuphim.ghephongchieu
@@ -66,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `ghephongchieu` (
   PRIMARY KEY (`idGhe`),
   KEY `FK_Ghe_PhongChieu` (`idPhong`),
   CONSTRAINT `FK_Ghe_PhongChieu` FOREIGN KEY (`idPhong`) REFERENCES `phongchieu` (`idPhong`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.ghephongchieu: ~56 rows (approximately)
+-- Dumping data for table rapchieuphim.ghephongchieu: ~123 rows (approximately)
 /*!40000 ALTER TABLE `ghephongchieu` DISABLE KEYS */;
 INSERT INTO `ghephongchieu` (`idGhe`, `tenGhe`, `trangThai`, `idPhong`) VALUES
 	(1, 'A1', 1, 1),
@@ -133,7 +136,67 @@ INSERT INTO `ghephongchieu` (`idGhe`, `tenGhe`, `trangThai`, `idPhong`) VALUES
 	(63, 'A3', 0, 2),
 	(64, 'A3', 0, 2),
 	(65, 'A3', 0, 2),
-	(66, 'A3', 0, 2);
+	(66, 'A3', 0, 2),
+	(67, 'A1', 0, 3),
+	(68, 'A1', 0, 3),
+	(69, 'A1', 0, 3),
+	(70, 'A1', 0, 3),
+	(71, 'A1', 0, 3),
+	(72, 'A1', 0, 3),
+	(73, 'A1', 0, 3),
+	(74, 'A1', 0, 3),
+	(75, 'A1', 0, 3),
+	(76, 'A1', 0, 3),
+	(77, 'A1', 0, 3),
+	(78, 'A1', 0, 3),
+	(79, 'A1', 0, 3),
+	(80, 'A1', 0, 3),
+	(81, 'A1', 0, 3),
+	(82, 'A1', 0, 3),
+	(83, 'A1', 0, 3),
+	(84, 'A1', 0, 3),
+	(85, 'A1', 0, 3),
+	(86, 'A1', 0, 3),
+	(87, 'A1', 0, 3),
+	(88, 'A1', 0, 3),
+	(89, 'A1', 0, 3),
+	(90, 'A1', 0, 3),
+	(91, 'A1', 0, 3),
+	(92, 'A1', 0, 3),
+	(93, 'A1', 0, 3),
+	(94, 'A1', 0, 3),
+	(95, 'A1', 0, 3),
+	(96, 'A1', 0, 3),
+	(97, 'A1', 0, 4),
+	(98, 'A1', 0, 4),
+	(99, 'A1', 0, 4),
+	(100, 'A1', 0, 4),
+	(101, 'A1', 0, 4),
+	(102, 'A1', 0, 4),
+	(103, 'A1', 0, 4),
+	(104, 'A1', 0, 4),
+	(105, 'A1', 0, 4),
+	(106, 'A1', 0, 4),
+	(107, 'A1', 0, 4),
+	(108, 'A1', 0, 4),
+	(109, 'A1', 0, 4),
+	(110, 'A1', 0, 4),
+	(111, 'A1', 0, 4),
+	(112, 'A1', 0, 4),
+	(113, 'A1', 0, 4),
+	(114, 'A1', 0, 4),
+	(115, 'A1', 0, 4),
+	(116, 'A1', 0, 4),
+	(117, 'A1', 0, 4),
+	(118, 'A1', 0, 4),
+	(119, 'A1', 0, 4),
+	(120, 'A1', 0, 4),
+	(121, 'A1', 0, 4),
+	(122, 'A1', 0, 4),
+	(123, 'A1', 0, 4),
+	(124, 'A1', 0, 4),
+	(125, 'A1', 0, 4),
+	(126, 'A1', 0, 4);
 /*!40000 ALTER TABLE `ghephongchieu` ENABLE KEYS */;
 
 -- Dumping structure for table rapchieuphim.giochieu
@@ -170,9 +233,9 @@ CREATE TABLE IF NOT EXISTS `lichchieu` (
   CONSTRAINT `FK_LichCHieu_GioChieu` FOREIGN KEY (`idGioChieu`) REFERENCES `giochieu` (`idGioChieu`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_LichCHieu_Phong` FOREIGN KEY (`idPhong`) REFERENCES `phongchieu` (`idPhong`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_LichChieu_Phim` FOREIGN KEY (`idPhim`) REFERENCES `phim` (`idPhim`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.lichchieu: ~10 rows (approximately)
+-- Dumping data for table rapchieuphim.lichchieu: ~17 rows (approximately)
 /*!40000 ALTER TABLE `lichchieu` DISABLE KEYS */;
 INSERT INTO `lichchieu` (`idLichChieu`, `idPhim`, `idPhong`, `ngayChieu`, `idGioChieu`, `giaVe`) VALUES
 	(2, 12, 1, '2022-11-27', 3, 50000),
@@ -180,10 +243,18 @@ INSERT INTO `lichchieu` (`idLichChieu`, `idPhim`, `idPhong`, `ngayChieu`, `idGio
 	(5, 12, 1, '2022-11-27', 5, 50000),
 	(13, 14, 1, '2022-11-29', 5, 50000),
 	(20, 28, 1, '2022-11-30', 5, 50000),
+	(27, 14, 1, '2022-12-04', 5, 500000),
+	(32, 14, 1, '2022-12-05', 9, 50000),
+	(21, 14, 2, '2022-12-03', 5, 50000),
+	(24, 15, 2, '2022-12-04', 5, 50000),
+	(25, 14, 2, '2022-12-03', 9, 50000),
 	(17, 28, 3, '2022-11-30', 3, 50000),
+	(23, 22, 3, '2022-12-03', 3, 50000),
 	(10, 14, 3, '2022-11-29', 9, 70000),
+	(26, 14, 3, '2022-12-03', 11, 50000),
 	(6, 14, 3, '2022-11-28', 13, 70000),
 	(15, 28, 3, '2022-11-30', 14, 50000),
+	(30, 14, 4, '2022-12-04', 5, 50000),
 	(14, 19, 4, '2022-11-29', 13, 50000);
 /*!40000 ALTER TABLE `lichchieu` ENABLE KEYS */;
 
@@ -266,14 +337,16 @@ CREATE TABLE IF NOT EXISTS `ve` (
   PRIMARY KEY (`idVe`),
   KEY `FK_Ve_LichChieu` (`idLichChieu`),
   CONSTRAINT `FK_Ve_LichChieu` FOREIGN KEY (`idLichChieu`) REFERENCES `lichchieu` (`idLichChieu`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.ve: ~3 rows (approximately)
+-- Dumping data for table rapchieuphim.ve: ~5 rows (approximately)
 /*!40000 ALTER TABLE `ve` DISABLE KEYS */;
 INSERT INTO `ve` (`idVe`, `idLichChieu`, `tenKhach`, `soDienThoai`, `tongTien`) VALUES
 	(1, 2, 'Le van hao', '0359235204', 150000),
 	(2, 5, 'TranTrung Hieu', '0356879536', 150000),
-	(3, 14, 'Pham Khac Luan', '0359623587', 150000);
+	(3, 14, 'Pham Khac Luan', '0359623587', 150000),
+	(4, 27, 'Hao', '0325655545', 150000),
+	(5, 30, 'hao', '0359235204', 100000);
 /*!40000 ALTER TABLE `ve` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

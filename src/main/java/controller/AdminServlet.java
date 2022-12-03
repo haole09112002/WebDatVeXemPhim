@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,10 @@ public class AdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		RequestDispatcher rd = request.getRequestDispatcher("/view/Admin/Login.jsp");
+        rd.forward(request, response);
+        String redirectURL = "http://whatever.com/myJSPFile.jsp";
+        response.sendRedirect(redirectURL);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
