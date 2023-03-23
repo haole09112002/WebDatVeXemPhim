@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`idAdmin`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.admin: ~0 rows (approximately)
+-- Dumping data for table rapchieuphim.admin: ~2 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` (`idAdmin`, `ten`, `username`, `password`) VALUES
 	(1, 'Hào', 'admin1', '123456'),
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `lichchieu` (
   CONSTRAINT `FK_LichChieu_Phim` FOREIGN KEY (`idPhim`) REFERENCES `phim` (`idPhim`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.lichchieu: ~17 rows (approximately)
+-- Dumping data for table rapchieuphim.lichchieu: ~18 rows (approximately)
 /*!40000 ALTER TABLE `lichchieu` DISABLE KEYS */;
 INSERT INTO `lichchieu` (`idLichChieu`, `idPhim`, `idPhong`, `ngayChieu`, `idGioChieu`, `giaVe`) VALUES
 	(2, 12, 1, '2022-11-27', 3, 50000),
@@ -279,14 +279,14 @@ CREATE TABLE IF NOT EXISTS `phim` (
   CONSTRAINT `FK_Phim_TheLoai` FOREIGN KEY (`idTheLoai`) REFERENCES `theloai` (`idTheLoai`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.phim: ~7 rows (approximately)
+-- Dumping data for table rapchieuphim.phim: ~8 rows (approximately)
 /*!40000 ALTER TABLE `phim` DISABLE KEYS */;
 INSERT INTO `phim` (`idPhim`, `tenPhim`, `moTa`, `thoiLuong`, `nhaSanXuat`, `doTuoi`, `daoDien`, `ngayKhoiChieu`, `ngayKetThuc`, `linkTrailer`, `linkAnh`, `idTheLoai`, `dienVien`, `quocGia`) VALUES
 	(12, 'Hạnh Phúc Máu', 'Sau câu thần chú bí ẩn, Hà Phương (NSND Kim Xuân) tiếp tục nhấn mạnh sự bất hạnh của bản thân khi gia nhập gia tộc Vương Đình! Liệu rằng tất cả sẽ khép lại khi Hà Phương chuyển giao quyền lực cho con trai đích tôn!', '110', 'Hữu Tài', '18', 'Hữu Tài', '2022-11-25', '2023-01-01', 'https://youtu.be/AZsZjzxpVwQ', 'https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/h/p/hpm_poster_2x3_1_.jpg', 1, 'NSND Kim Xuân', 'Việt Nam'),
-	(14, 'Phi Vụ Nữa Đêm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, 'Anh'),
-	(15, 'Xâm Chiếm Vật Chủ', 'Xâm Chiếm Vật Chủ xoay quanh câu chuyện về một nhóm du khách bất ngờ phát hiện sự tồn tại của một loài vật quái dị trong thời gian cách ly Covid tại một khách sạn của chính phủ. Sinh vật này chính là loài rết khổng lồ, có thể biến dạng dựa trên hình dạng và tính cách của con người. Vật đổi chủ, hồn đổi xác. Họ sẽ làm gì để trốn thoát khỏi sự truy đuổi của loài rết 100 chân khát máu này?', '92', 'Punyanet Tanaprapass', '18', 'Chalit Krileadmongkon', NULL, NULL, NULL, NULL, 2, NULL, NULL),
+	(14, 'Phi Vụ Nữa Đêm', NULL, '110', 'Holly', NULL, NULL, '2022-11-03', '2023-12-03', NULL, 'https://i.ex-cdn.com/giadinhmoi.vn/files/content/2022/12/02/phi-vu-nua-dem-02-1135.jpg', 3, NULL, 'Anh'),
+	(15, 'Xâm Chiếm Vật Chủ', 'Xâm Chiếm Vật Chủ xoay quanh câu chuyện về một nhóm du khách bất ngờ phát hiện sự tồn tại của một loài vật quái dị trong thời gian cách ly Covid tại một khách sạn của chính phủ. Sinh vật này chính là loài rết khổng lồ, có thể biến dạng dựa trên hình dạng và tính cách của con người. Vật đổi chủ, hồn đổi xác. Họ sẽ làm gì để trốn thoát khỏi sự truy đuổi của loài rết 100 chân khát máu này?', '92', 'Punyanet Tanaprapass', '18', 'Chalit Krileadmongkon', '2022-11-03', '2023-01-03', NULL, 'https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/x/_/x_m_chi_m_v_t_ch_-_main_poster_-_dkkc_02.12.2022_1_.jpg', 2, 'James Cameron', NULL),
 	(19, 'Thế Thân', 'Hyun-woo chọn cách nhận nuôi Isaac để vượt qua nỗi đau mất con sau một tai nạn thảm khốc. Oan nghiệt thay, Isaac lại là một đứa bé sở hữu đôi mắt âm dương có thể thấy được người cõi âm. Năng lực đặc biệt hay lời nguyền ám ảnh sẽ giáng lên cuộc sống của gia đình vốn chất chứa nhiều bi kịch?', '114', 'Kim Jin-Young', '18', 'Kim Jin-Young', '2022-11-18', '2023-12-05', 'https://youtu.be/mb1-ltMQT14', 'https://www.alotintuc.com/wp-content/uploads/2022/11/Teaser-Poster-2.jpg', 1, 'Park Hyo-ju, Kim Min-Jae, Cha Sun-Woo, Park Jae-jun', 'Hàn Quốc'),
-	(22, 'Săn Lùng', 'Hai đặc vụ xuất sắc của Cơ Quan Tình Báo Hàn Quốc được giao nhiệm vụ truy lùng nội gián bên trong tổ chức, cả hai dần tìm ra những âm mưu đen tối của kẻ thù lẫn đồng đội. Những màn đấu trí cân não xen lẫn các trường đoạn hành động không ngừng nghỉ, khắc hoạ một chính trường Hàn Quốc đầy âm mưu và khủng hoảng vào những năm 1980. Liệu ai là kẻ chiến thắng khi cuộc chiến hạ màn? m mưu nào đang được che giấu?', '125', 'Lee Jung-jae, Han Jae-Duk, Cho Jae-sang', '18', 'Lee Jung-jae', '2022-11-29', '2023-11-29', 'https://youtu.be/dW79cWYUOc0', NULL, 1, 'Lee Jung-jae, Jung Woo-Sung, Jeon Hye-Jin, Heo Sung-tae, Go Youn-jung', 'Hàn Quốc'),
+	(22, 'Săn Lùng', 'Hai đặc vụ xuất sắc của Cơ Quan Tình Báo Hàn Quốc được giao nhiệm vụ truy lùng nội gián bên trong tổ chức, cả hai dần tìm ra những âm mưu đen tối của kẻ thù lẫn đồng đội. Những màn đấu trí cân não xen lẫn các trường đoạn hành động không ngừng nghỉ, khắc hoạ một chính trường Hàn Quốc đầy âm mưu và khủng hoảng vào những năm 1980. Liệu ai là kẻ chiến thắng khi cuộc chiến hạ màn? m mưu nào đang được che giấu?', '125', 'Lee Jung-jae, Han Jae-Duk, Cho Jae-sang', '18', 'Lee Jung-jae', '2022-11-29', '2023-11-29', 'https://youtu.be/dW79cWYUOc0', 'http://starlight.vn/Areas/Admin/Content/Fileuploads/images/POSTER/hunt.jpg', 1, 'Lee Jung-jae, Jung Woo-Sung, Jeon Hye-Jin, Heo Sung-tae, Go Youn-jung', 'Hàn Quốc'),
 	(28, 'One Piece Film Red', 'Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ”Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát ở “đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Xem lịch chiếu One Piece Film Red và mua vé One Piece Film Red dễ dàng tại Moveek', '115', 'Goro Taniguchi', '13', 'Goro Taniguchi', '2022-11-25', '2023-11-29', 'https://youtu.be/7Ma1uab-bQM', 'https://m.media-amazon.com/images/M/MV5BNTU4YWEzMzMtZGQ0Ny00Y2Q4LTgyZTYtOWVmZjUyZDhjMWYzXkEyXkFqcGdeQXVyMTM0MDY3ODQ3._V1_.jpg', 3, 'Shuuichi Ikeda, Mayumi Tanaka, Kazuya Nakai, Akemi Okamura, Kappei Yamaguchi', 'Nhật Bản'),
 	(32, 'Huyền Sử Vua Đinh', 'Phim là một góc nhìn mới mô tả câu chuyện Đinh Bộ Lĩnh dẹp loạn 12 sứ quân, thống nhất đất nước.', '78', 'Anthony Võ', '16', 'Anthony Võ', '2022-11-18', '2023-11-29', 'https://youtu.be/TOD5lG4GJSw', 'https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/p/o/poster_470x700.jpg', 2, 'Anh Tài, Sala Uyên Trinh, Ngô Tiến Thành', 'Việt Nam'),
 	(34, 'Bố Già', 'Phim sẽ xoay quanh lối sống thường nhật của một xóm lao động nghèo, ở đó có bộ tứ anh em Giàu - Sang - Phú - Quý với Ba Sang sẽ là nhân vật chính, hay lo chuyện bao đồng nhưng vô cùng thương con cái. Câu chuyện phim tập trung về hai cha con Ba Sang (Trấn Thành) và Quắn (Tuấn Trần). Dù yêu thương nhau nhưng khoảng cách thế hệ đã đem đến những bất đồng lớn giữa hai cha con. Liệu cả hai có thể cho nhau cơ hội thấu hiểu đối phương, thu hẹp khoảng cách và tạo nên hạnh phúc từ sự khác biệt?', '128', 'Trấn Thành', '13', 'Trấn Thành', '2022-11-29', '2022-12-29', NULL, 'https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/1/2/1200x1800.jpg', 3, 'Trấn Thành, Tuấn Trần, Ngân Chi, NSND Ngọc Giàu, ...', 'Việt Nam');
@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS `phongchieu` (
   PRIMARY KEY (`idPhong`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.phongchieu: ~2 rows (approximately)
+-- Dumping data for table rapchieuphim.phongchieu: ~4 rows (approximately)
 /*!40000 ALTER TABLE `phongchieu` DISABLE KEYS */;
 INSERT INTO `phongchieu` (`idPhong`, `tenPhong`, `soGhe`) VALUES
 	(1, 'Rạp 1', 30),
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `theloai` (
   PRIMARY KEY (`idTheLoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table rapchieuphim.theloai: ~5 rows (approximately)
+-- Dumping data for table rapchieuphim.theloai: ~6 rows (approximately)
 /*!40000 ALTER TABLE `theloai` DISABLE KEYS */;
 INSERT INTO `theloai` (`idTheLoai`, `tenTheLoai`) VALUES
 	(1, 'Drama'),
@@ -346,7 +346,9 @@ INSERT INTO `ve` (`idVe`, `idLichChieu`, `tenKhach`, `soDienThoai`, `tongTien`) 
 	(2, 5, 'TranTrung Hieu', '0356879536', 150000),
 	(3, 14, 'Pham Khac Luan', '0359623587', 150000),
 	(4, 27, 'Hao', '0325655545', 150000),
-	(5, 30, 'hao', '0359235204', 100000);
+	(5, 30, 'hao', '0359235204', 100000),
+	(6, 32, 'trung', '0359235204', 100000),
+	(7, 27, 'hao', '0359235204', 50000);
 /*!40000 ALTER TABLE `ve` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

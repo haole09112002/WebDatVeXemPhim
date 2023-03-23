@@ -113,12 +113,12 @@
           Diễn viên : <%= phim.getDienVien() %>
         </p>
         <div class="mt-3 d-flex justify-content-center">
-            <form class="add-inputs" method="get">
+            <form class="add-inputs" method="get" action="DatVe">
               <button
-                name="add_to_cart"
+                name="idPhim"
                 type="submit"
                 class="btn btn-primary btn-lg"
-                value = "<%-- <%= phim.get(0).getIdPhim() %> --%>"
+                value = "<%= phim.getIdPhim() %>"
               >
                 MUA VÉ
               </button>

@@ -42,11 +42,11 @@ pageEncoding="ISO-8859-1"%>
   <div class="container">
       <nav class="navbar navbar-light bg-light">
         <div> 
-        <a class="navbar-brand position-relative hover-a" href="">HOME</a>
+        <a class="navbar-brand position-relative hover-a" href="Home">HOME</a>
         <a class="navbar-brand position-relative hover-a" href="">BUY TICKETS</a>
         </div>
-        <a class="navbar-brand position-relative hover-a" href="">
-        <i class="ti-user font-weight-bold "></i>
+        <a class="navbar-brand position-relative hover-a" href="Admin">Login
+        
         </a>
         </nav>
   </div>

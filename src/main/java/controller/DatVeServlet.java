@@ -97,7 +97,7 @@ public class DatVeServlet extends HttpServlet {
 					chiTietVeBO.add(new ChiTietVe(veBO.getNewIdve(),idG));
 				}
 				request.setAttribute("msg", "Đặt vé thành công");
-				RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DatVe.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/view/Client/DatVeThanhCong.jsp");
 		        rd.forward(request, response);				
 			}
 			

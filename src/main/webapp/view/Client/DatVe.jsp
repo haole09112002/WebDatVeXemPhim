@@ -626,11 +626,11 @@ keyframes gradientAnim {to { background-position:100%top;
 		<div class="col-md-6">
 			<div class="col-lg-12 edit_information">
 				<form action="DatVe?idLichChieu=27" method="get" name="lich" >
-					<h3 class="text-center" style="color: #9cbbc7">Thông Tin Vé</h3>
+					<h3 class="text-center" style="color: #9cbbc7">Thông Tin Giao Dịch</h3>
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="form-group">
-								<label class="profile_details_text" for="name">Họ Tên:</label> <input
+								<label class="profile_details_text" for="name">From:</label> <input
 									type="text" name="ten" id="name" class="form-control"
 									value="" required placeholder="Nhập đầy đủ họ tên..." />
 							</div>
@@ -639,8 +639,7 @@ keyframes gradientAnim {to { background-position:100%top;
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="form-group">
-								<label class="profile_details_text" for="phone">Số Điện
-									Thoại:</label> <input type="tel" name="phone" id="phone"
+								<label class="profile_details_text" for="phone">To:									Thoại:</label> <input type="tel" name="phone" id="phone"
 									class="form-control" value=""
 									placeholder="Nhập số điện thoại..." required
 									pattern="[0-9]{10}" />
@@ -650,8 +649,7 @@ keyframes gradientAnim {to { background-position:100%top;
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="form-group">
-								<label class="profile_details_text" for="movie">Tên
-									Phim:</label> <input type="text" name="tenPhim" id="movie" 
+								<label class="profile_details_text" for="movie">Dữ liệu:								Phim:</label> <input type="text" name="tenPhim" id="movie" 
 									class="form-control" value="<%=phim.getTenPhim() %>" readonly />
 							</div>
 						</div>
@@ -685,8 +683,8 @@ keyframes gradientAnim {to { background-position:100%top;
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 submit">
 							<div class="form-group">
-								<input type="submit" class="btn btn-success" value ="<%=lichChieu %>" name = "idLichChieu" >
-									style="padding: 7px 228px" />
+								<button type="submit" class="btn btn-success" value ="<%=lichChieu %>" name = "idLichChieu" style="padding: 7px 228px" >Đặt vé</button>
+									
 							</div>
 						</div>
 					</div>
